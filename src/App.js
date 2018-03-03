@@ -113,7 +113,7 @@ class App extends Component {
         {borough ? <this.FilterPlaces  /> : null}
         <br />
 
-        <MapContainer />
+        <MapContainer  />
 
 <Switch>
   <Route />
