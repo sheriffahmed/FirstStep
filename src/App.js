@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import {Switch, Link, Route} from 'react-router-dom';
+import { Switch, Link, Route } from 'react-router-dom';
 import axios from 'axios';
 import MapContainer from './api/GoogleMapsAPI'
 import logo from './logo.svg';
 import './App.css';
+import resourcesAPI from './api/resourcesAPI';
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       allAddress: [],
@@ -14,112 +15,131 @@ class App extends Component {
       borough: ''
     }
   }
-  handleFetch = () =>{
-    axios
-    .get('https://data.cityofnewyork.us/resource/9ri9-nbz5.json')
-    .then(res =>{
-      // console.log(res.data);
-      let addresses = []
-      let sb = []
-      res.data.forEach(place =>{
-       if(!sb.includes(place.borough)){
-         sb.push(place.borough);
-       }
-       let obj = {}
-       for(const prop in place){
-         if(prop === 'borough' || prop === 'city' || prop === 'facility_name' || prop === 'latitude' || prop === 'longitude' || prop === 'comments' || prop === 'phone_number_s' || prop == 'street_address'){
-          obj[prop] = place[prop]
-         }
-       }
-       addresses.push(obj)
+
+  fetchListings = () => {
+    Promise.all([
+      resourcesAPI.getJobCenterListing(),
+      resourcesAPI.getGEDListing()
+    ])
+      .then(([jobRes, gedRes]) => {
+        console.log("jobRes.data", jobRes.data);
+        console.log("gedRes.data", gedRes.data);
+        let addresses = []
+        let sb = []
+        let bothAPI = [...jobRes.data].concat([...gedRes.data]);
+        console.log("bothAPI", bothAPI)
+        let matchingPropNames = [
+          'borough',
+          'city',
+          'address',
+          'contact_number',
+          'latitude',
+          'longitude',
+          'nta',
+          'program_site_name',
+          'facility_name',
+          'comments',
+          'phone_number_s',
+          'street_address']
+
+        let obj = {}
+
+        bothAPI.forEach(place => {
+          if (!sb.includes(place.borough)) {
+            sb.push(place.borough);
+            for (const prop in place) {
+              if (matchingPropNames.indexOf(prop) >= 0) {
+                obj[prop] = place[prop]
+              }
+            }
+          }
+        })
+
+        console.log(`ADD`, bothAPI)
+        this.setState({
+          allAddress: [...bothAPI],
+          selectBox: ['', ...sb]
+        })
+        // console.log(`ALL`, this.state.allAddress)
       })
-      console.log(`ADD`, addresses)
-      this.setState({
-        allAddress: [...addresses],
-        selectBox: ['', ...sb]
-      })
-      // console.log(`ALL`, this.state.allAddress)
-    })
   }
-  handleSelect = e =>{
+
+
+  handleSelect = e => {
     this.setState({
       borough: e.target.value
     })
+    console.log("this.state.borough", e.target.value)
   }
 
-  HandleFilter = () =>(
+  HandleFilter = () => (
     <div>
       <select onChange={this.handleSelect}>
-        {this.state.selectBox.map(b =>{
-          return(
+        {this.state.selectBox.map(b => {
+          return (
             <option value={b}>
               {b}
-              </option>
+            </option>
           )
         })}
-        </select>
-      </div>
+      </select>
+    </div>
   )
 
-  FilterPlaces = () =>  {
-    let {allAddress} = this.state
-    return(
-    <div>
-      {allAddress.map(place =>{
-         if(place.borough === this.state.borough){
-        
-       
-          return(
-           <ul> 
-             <h2>Facility: {place.facility_name}</h2>
-             <li>Phone Number: {place.phone_number_s}</li>
-             <li>City: {place.city} </li>
-             <li>Address: {place.street_address} </li>
-             <li> {place.comments ? `Comments: ${place.comments}` : null } </li>     
-
-      </ul>
-             
-          )
-         
-      }
-      })
-    }
-    </div>
-  )}
-  
-  componentDidMount(){
-    this.handleFetch();
-  }
-  render() {
-    let {borough, allAddress} = this.state
+  filterPlaces = () => {
+    let { allAddress } = this.state
+    console.log("place.borough", this.state.borough)
+    console.log("allAddress", allAddress)
     return (
-      <div className="App">
-        {/* <header className="App-header"> */}
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+      <div>
+        {allAddress.map(place => {
+          if (place.borough === this.state.borough) {
 
+            return (
+              <ul>
+                <h2>Facility: {place.facility_name || place.program_site_name}</h2>
+                <li>Phone Number: {place.phone_number_s || place.contact_number}</li>
+                <li>City: {place.city || place.borough} </li>
+                <li>Address: {place.street_address || place.address} </li>
+                <li> {place.comments ? `Comments: ${place.comments}` : null} </li>
+              </ul>
+            )
+          }
+        })
+        }
+      </div>
+    )
+  }
+
+
+  componentDidMount() {
+    this.fetchListings();
+  }
+
+  render() {
+    console.log("render: ", this.state)
+    let { borough, allAddress } = this.state
+    return (
+      <div className="App" >
         <nav>
           <Link to='/' >Home</Link>
           <Link to='/' >Centers By Borough</Link>
           <Link to='/' >Centers By City</Link>
-          
-          </nav>
+        </nav>
         {/* </header> */}
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <p className="App-intro" >
+          To get started, edit <code> src / App.js</code > and save to reload.
+        </p >
         <h1> Filter Select</h1>
         <this.HandleFilter />
-        {borough ? <this.FilterPlaces  /> : null}
-        <br />
+        {borough ? this.filterPlaces(): null}
+        < br />
+        <MapContainer />
+        <Switch>
+          <Route />
+        </Switch>
 
-        <MapContainer  />
-
-<Switch>
-  <Route />
-  </Switch>
-
-      </div>
+      </div >
     );
   }
 }
