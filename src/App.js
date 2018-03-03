@@ -4,6 +4,8 @@ import axios from 'axios';
 import MapContainer from './api/GoogleMapsAPI'
 import logo from './logo.svg';
 import './App.css';
+import resourcesAPI from './api/resourcesAPI';
+
 
 class App extends Component {
   constructor(){
@@ -15,9 +17,7 @@ class App extends Component {
     }
   }
   handleFetch = () =>{
-    axios
-    .get('https://data.cityofnewyork.us/resource/9ri9-nbz5.json')
-    .then(res =>{
+    resourcesAPI.getJobCenterListing().then(res =>{
       // console.log(res.data);
       let addresses = []
       let sb = []
