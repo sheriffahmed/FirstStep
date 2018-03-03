@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Switch, Link, Route} from 'react-router-dom';
 import axios from 'axios';
-import MapContainer from './map'
+import MapContainer from './api/GoogleMapsAPI'
 import logo from './logo.svg';
 import './App.css';
 
