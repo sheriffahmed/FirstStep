@@ -99,9 +99,9 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
 
         <nav>
-          <Link>Home</Link>
-          <Link>Centers By Borough</Link>
-          <Link>Centers By City</Link>
+          <Link to='/' >Home</Link>
+          <Link to='/' >Centers By Borough</Link>
+          <Link to='/' >Centers By City</Link>
           
           </nav>
         {/* </header> */}
