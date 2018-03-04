@@ -51,6 +51,7 @@ class Home extends Component {
         return (
         <div>
             <div>
+                <img id="icon" src='https://i.imgur.com/muUuCZ8.png'/>
                 <h1>Take Your First Step </h1>
                 <h2>Help Me Find</h2>
             <div>
@@ -61,22 +62,16 @@ class Home extends Component {
         name="GedListings"
         onChange={this.handleCheckboxChange} 
         id="box-1"/>
-        <label htmlFor="box-1"> GED Locations</label>
+        <label htmlFor="box-1"> GED Plus Locations</label>
         <input 
         type="checkbox"
         name="JobListings"
         onChange={this.handleCheckboxChange} 
         id="box-2"/>
         <label htmlFor="box-2"> Financial Assistance Locations </label>
-        <input 
-        type="checkbox" 
-        name="Other"
-        onChange={this.handleCheckboxChange} 
-        id="box-3"/>
-        <label htmlFor="box-3"> Other</label>
       </div>
       <div className ="h2">
-        <h2>In Location</h2>
+        <h2>In</h2>
       </div>
       <div className ="boxes1">
       <form onSubmit={this.handleSubmit}>

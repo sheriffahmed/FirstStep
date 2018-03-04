@@ -129,7 +129,7 @@ class App extends Component {
     return (
       <div className="App" >
         <nav>
-          <Link to='/' >Home</Link>
+          {/* <Link to='/' >Home</Link> */}
           {"   "}
           {/* <Link to='/byborough' >Centers By Borough</Link> */}
           {"   "}

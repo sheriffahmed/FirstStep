@@ -3,10 +3,9 @@
 
 
 body {
-  background: #7474BF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #348AC7, #7474BF);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #348AC7, #7474BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
+background: #5C258D;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #4389A2, #5C258D);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #4389A2, #5C258D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
 display: flex;
 height: 100%;
 font-family: 'Sanchez', serif;
@@ -16,12 +15,17 @@ text-align: center;
 }
 
 h1{
-  bottom:em;
+  margin-top: -0.5em;
   font-family: 'Sanchez', serif; font-size: 50px;
   color: white;
-  text-shadow: 1px 4px 6px black, 0 0 0 #000, 1px 4px 6px#000
+  text-shadow: 1px 4px 6px black, 0 0 0 #000, 1px 4px 6px#000;
+  letter-spacing: 2px;
 }
 
+h2 {
+  font-family: 'Sanchez', serif; color: white;
+  text-shadow: #000 2px 2px;
+}
 /* .h2{
   margin-top: -3em;
 } */
@@ -96,7 +100,7 @@ button {
   background: none;
   border: 3px solid #fff;
   border-radius: 5px;
-  color: #fff;
+  color: #fff; 
   display: block;
   font-size: 1.0em;
   font-weight: bold;
@@ -106,6 +110,8 @@ button {
   text-transform: uppercase;
   overflow: hidden;
   font-family: 'Sanchez', serif;
+  letter-spacing: 1px;
+
 
 }
 
@@ -139,3 +145,7 @@ button:hover:after {
   width: 135%;
 }
 
+#icon{
+  margin-top: -1em;
+  transform: rotate(-20deg)
+}
