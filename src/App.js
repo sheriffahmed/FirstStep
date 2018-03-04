@@ -86,10 +86,14 @@ class App extends Component {
     }
     </div>
   )}
-  
+  handleMap =()=>(
+     <MapContainer zoom ={10} initialCenter={BOROUGHS.MANHATTAN} locations={this.state.allAddress} />
+  )
   componentDidMount(){
-    this.handleFetch();
+    this.handleFetch(); 
+    this.handleMap();
   }
+ 
   render() {
     let {borough, allAddress} = this.state
     return (
@@ -112,8 +116,8 @@ class App extends Component {
         <this.HandleFilter />
         {borough ? <this.FilterPlaces  /> : null}
         <br />
-
-        <MapContainer zoom ={10} initialCenter={BOROUGHS.MANHATTAN} locations={allAddress} />
+<this.handleMap />
+       
 
 <Switch>
   <Route />
