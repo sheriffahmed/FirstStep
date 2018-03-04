@@ -97,6 +97,8 @@ class Home extends Component {
         </form>
       </div>     
       <div>
+        <nav>
+            </nav>
       <button>SUBMIT</button>
     </div>               
                 

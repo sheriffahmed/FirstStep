@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Sanchez');
 
 
+
 body {
-background: #085078;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-display: -webkit-flex;
+  background: #7474BF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #348AC7, #7474BF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #348AC7, #7474BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 display: flex;
 height: 100%;
 font-family: 'Sanchez', serif;
@@ -32,17 +33,19 @@ h1{
   padding: 10px;
   }
 .boxes  {
-  padding: 50px;
+  padding: 40px;
   background: black;
   opacity: 0.5;
   float: left;
+  border-radius: 25px;
 
 }
 
 .boxes1 {
-  padding: 40px;
+  padding: 30px;
   background: black;
   opacity: 0.5;
+  border-radius: 25px;
 }
 
 /*Checkboxes styles*/
