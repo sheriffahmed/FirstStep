@@ -9,23 +9,25 @@ class Home extends Component {
         super();
         const { allAddress } = props
         this.state = {
-            services: ["JobListings", "GedListings", "Other"],
-            boroughs: ["Queens", "Manhattan", "Bronx", "Brooklyn", "StatenIsland"],
+            checkedArr: [{services:["JobListings", "GedListings", "Other"],
+                          boroughs:["Queens", "Manhattan", "Bronx", "Brooklyn", "StatenIsland"]}],
             fireRedirect: false
         }
         console.log("allAddresssss", props)
     }
 
     handleCheckboxChange = e => {
-        const { boroughs } = this.state
-        boroughs.map((borough) => {
-            if (borough === e.target.name) {
+        const { checkedArr } = this.state
+        let selectedArr = []
+        checkedArr[0].services.map((served) => {
+            if (served === e.target.name) {
                 this.setState({
-                    borough: e.target.name
+                    checkedArr: selectedArr.push(e.target.name)
                 })
-                console.log("e.target.name", e.target.name)
             }
-        })
+        }) 
+                console.log("e.target.name", e.target.name)
+                console.log("checkedArr", checkedArr)
     };
 
     handleSubmit = (event) => {
@@ -34,6 +36,15 @@ class Home extends Component {
             fireRedirect: true //only updating the state when the form is submitted
         })
     };
+
+    componentDidMount() {
+        this.renderDataSelected();
+    }
+    
+    renderDataSelected = () => {
+        const { allAddress,  } = this.state
+        return ( <EachBoroughPage allAddress={allAddress}/> )
+    }
 
     render() {
         const { fireRedirect } = this.state
@@ -100,7 +111,7 @@ class Home extends Component {
                 {fireRedirect && (
                     <Switch>
                     <Redirect from='/' to='/byborough'/>
-                    <Route path='/byborough' component={EachBoroughPage}/>
+                    <Route path='/byborough' render={this.renderDataSelected}/>
                   </Switch>
                 )}
                 
