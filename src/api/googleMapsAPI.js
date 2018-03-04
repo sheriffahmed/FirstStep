@@ -33,7 +33,9 @@ import ReactDOM from 'react-dom';
     // ...
   }
   
-
+componentDidMount(){
+  // const 
+}
 render() {
   const style = {
     width: '50vw',
@@ -46,11 +48,17 @@ render() {
       return (
         <div style={style} ref='map'>Map will go here
         <Map google={this.props.google}>
-          {this.props.locations.map((pos)=>(
+          {this.props.locations.map((pos)=>{
+          {/* console.log(`MARKERS`, pos) */}
+         let mark = {lat: Number(pos.latitude), lng: Number(pos.longitude)}
+         console.log(`MARK`, mark)
+            return(
             <div>
            <Marker />
-          <Marker position={pos} />
-          </div>))}
+          <Marker position={{...mark}} />
+          </div>
+            )
+          })}
         </Map> 
           
           
@@ -62,7 +70,7 @@ render() {
   google: PropTypes.object,
   zoom: PropTypes.number,
   initialCenter: PropTypes.object,
-  locations: PropTypes.object
+  locations: PropTypes.array
 }
 MapContainer.defaultProps = {
   zoom: 13,

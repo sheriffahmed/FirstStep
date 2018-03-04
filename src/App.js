@@ -33,12 +33,12 @@ class App extends Component {
        }
        addresses.push(obj)
       })
-      console.log(`ADD`, addresses)
+      // console.log(`ADD`, addresses)
       this.setState({
         allAddress: [...addresses],
         selectBox: ['', ...sb]
       })
-      // console.log(`ALL`, this.state.allAddress)
+      console.log(`ALL`, this.state.allAddress)
     })
   }
   handleSelect = e =>{
@@ -113,7 +113,7 @@ class App extends Component {
         {borough ? <this.FilterPlaces  /> : null}
         <br />
 
-        <MapContainer zoom ={10} initialCenter={BOROUGHS.MANHATTAN} />
+        <MapContainer zoom ={10} initialCenter={BOROUGHS.MANHATTAN} locations={allAddress} />
 
 <Switch>
   <Route />
