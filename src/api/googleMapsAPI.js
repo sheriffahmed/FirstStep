@@ -45,7 +45,15 @@ render() {
       }
       return (
         <div style={style} ref='map'>Map will go here
-        <Map google={this.props.google} />
+        <Map google={this.props.google}>
+          {this.props.locations.map((pos)=>(
+            <div>
+           <Marker />
+          <Marker position={pos} />
+          </div>))}
+        </Map> 
+          
+          
         </div>
       )
     }
