@@ -73,7 +73,10 @@ export default GoogleApiWrapper({
 MANHATTAN: {lat:40.758896 ,lng:-73.985130},
 BROOKLYN: {lat:40.650002 ,lng:-73.949997},
 BRONX: {lat:40.837048,lng:-73.865433},
-BRONX: {lat:40.837048,lng:-73.865433},
+QUEENS: {lat:40.6814922,lng:-73.8365236},
+STATENISLAND: {lat:40.579021,lng:-74.151535
+},
+
 
 
 
