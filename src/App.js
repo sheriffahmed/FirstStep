@@ -125,11 +125,12 @@ class App extends Component {
     }
     </div>
   )}
-  handleMap = ()=> {
-    return (
-      <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} locations={this.state.allAddress} />
-     )
-  }
+  
+  // handleMap = ()=> {
+  //   return (
+  //     <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} locations={this.state.allAddress} />
+  //    )
+  // }
 
  
   // render() {
@@ -222,7 +223,7 @@ class App extends Component {
         <h1> Filter Select All Places</h1>
         {/* {this.HandleFilter()} */}
         < br />
-           {this.handleMap()}
+           {/* {this.handleMap()} */}
       <Switch>
           <Route exact path="/" render={() => (
 
