@@ -136,9 +136,9 @@ class App extends Component {
         </nav>
         {/* </header> */}
         
-        <h1> Filter Select All Places</h1>
+        {/* <h1> Filter Select All Places</h1>
         <this.HandleFilter />
-        {borough ? this.filterAllPlaces() : null}
+        {borough ? this.filterAllPlaces() : null} */}
         < br />
 
 
