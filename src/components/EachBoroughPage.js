@@ -12,10 +12,11 @@ class EachBoroughPage extends Component {
             info: "",
             list: []
         }
-        console.log("props bitches", props)
+        console.log("props ", props)
     }
 
     // renderList = () => {
+    
 
     // }
 

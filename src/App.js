@@ -5,14 +5,20 @@ import logo from './logo.svg';
 import resourcesAPI from './api/resourcesAPI';
 import Home from './components/Home';
 import EachBoroughPage from './components/EachBoroughPage';
+const Data = ({ allAddress, jobAPI, gedAPI }) => {
 
+}
 class App extends Component {
   constructor() {
     super();
     this.state = {
       allAddress: [],
-      selectBox: [''],
-      borough: ''
+      checkBox: [''],
+      borough: '',
+      jobAPI: [],
+      gedAPI: [],
+      checked: false,
+      checkedArr: []
     }
   }
 
@@ -27,6 +33,7 @@ class App extends Component {
         let addresses = []
         let sb = []
         let bothAPI = [...jobRes.data].concat([...gedRes.data]);
+
         console.log("bothAPI", bothAPI)
         let matchingPropNames = [
           'borough',
@@ -58,7 +65,9 @@ class App extends Component {
         console.log(`ADD`, bothAPI)
         this.setState({
           allAddress: [...bothAPI],
-          selectBox: ['', ...sb]
+          checkBox: ['', ...sb],
+          jobAPI: [...jobRes],
+          gedAPI: [...gedRes]
         })
         // console.log(`ALL`, this.state.allAddress)
       })
@@ -72,19 +81,38 @@ class App extends Component {
     console.log("this.state.borough", e.target.value)
   }
 
-  HandleFilter = () => (
-    <div>
-      <select onChange={this.handleSelect}>
-        {this.state.selectBox.map(b => {
-          return (
-            <option value={b}>
-              {b}
-            </option>
-          )
-        })}
-      </select>
-    </div>
-  )
+  handleCheckBox = e => {
+    const { checkedArr } = this.state
+    let choicesArr = ["Queens",
+      "Manhattan",
+      "Bronx",
+      "Brooklyn",
+      "StatenIsland"]
+
+    choicesArr.map((served) => {
+      if (served === e.target.name) {
+        checkedArr.push(e.target.name)
+        this.setState({
+          checkedArr
+        })
+      }
+    })
+    console.log("e.target.name", e.target.name)
+    console.log("checkedArr", checkedArr)
+  }
+
+  // HandleFilter = () => (
+  //   this.state.checkBox.map(b => {
+  //     return (
+  //       <div>
+  //         <input type='checkbox' name={b} onClick={this.handleCheckBox} checked={this.state.checked} />
+  //         <label> {b} </label>
+
+  //       </div >
+  //     )
+  //   })
+  // )
+
 
   filterAllPlaces = () => {
     let { allAddress } = this.state
@@ -112,12 +140,12 @@ class App extends Component {
   }
 
   renderBoroughPage = () => {
-    const { allAddress } = this.state
+    const { allAddress, jobAPI, gedAPI } = this.state
+
     return (
-      <Home allAddress = {allAddress} />
+      <Home allAddress={allAddress} jobAPI={jobAPI} gedAPI={gedAPI} />
     )
   }
-
 
   componentDidMount() {
     this.fetchListings();
@@ -131,25 +159,98 @@ class App extends Component {
         <nav>
           <Link to='/' >Home</Link>
           {"   "}
-          {/* <Link to='/byborough' >Centers By Borough</Link> */}
+          <Link to='/byborough' >Centers By Borough</Link>
           {"   "}
         </nav>
-        {/* </header> */}
-        
-        {/* <h1> Filter Select All Places</h1>
-        <this.HandleFilter />
-        {borough ? this.filterAllPlaces() : null} */}
+
+        <h1> Filter Select All Places</h1>
+        {/* {this.HandleFilter()} */}
         < br />
+        
+      <Switch>
+          <Route exact path="/" render={() => (
 
-
-
-        <Switch>
-          <Route exact path="/" render={() =>(
             <div>
-            <this.renderBoroughPage />
+              <div>
+                <h1>Take Your First Step </h1>
+                <h2>Help Me Find</h2>
+                <div>
+                  <div id="wrapper">
+                    <div className="boxes">
+                      <input
+                        type="checkbox"
+                        name="GedListings"
+                        onChange={this.handleCheckboxChange}
+                        id="box-1" />
+                      <label htmlFor="box-1"> GED Locations</label>
+                      <input
+                        type="checkbox"
+                        name="JobListings"
+                        onChange={this.handleCheckboxChange}
+                        id="box-2" />
+                      <label htmlFor="box-2"> Financial Assistance Locations </label>
+                      <input
+                        type="checkbox"
+                        name="Other"
+                        onChange={this.handleCheckboxChange}
+                        id="box-3" />
+                      <label htmlFor="box-3"> Other</label>
+                    </div>
+                    <div className="h2">
+                      <h2>In Location</h2>
+                    </div>
+                    <div className="boxes1">
+                      <form onSubmit={this.handleSubmit}>
+                        <input
+                          type="checkbox"
+                          name="Queens"
+                          onChange={this.handleCheckboxChange}
+                          id="box2-1" />
+                        <label htmlFor="box2-1"> Queens</label>
+                        <input
+                          type="checkbox"
+                          name="Manhattan"
+                          onChange={this.handleCheckboxChange}
+                          id="box2-2" />
+                        <label htmlFor="box2-2"> Bronx </label>
+                        <input
+                          type="checkbox"
+                          name="Bronx"
+                          onChange={this.handleCheckboxChange}
+                          id="box2-3" />
+                        <label htmlFor="box2-3">Manhattan </label>
+                        <input
+                          type="checkbox"
+                          name="Brooklyn"
+                          onChange={this.handleCheckboxChange}
+                          id="box2-4" />
+                        <label htmlFor="box2-4">Brooklyn </label>
+                        <input
+                          type="checkbox"
+                          name="StatenIsland"
+                          onChange={this.handleCheckboxChange}
+                          id="box2-5" />
+                        <label htmlFor="box2-5">Staten Island </label>
+                      </form>
+                    </div>
+                    <div>
+                      <button>SUBMIT</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          ) }/>
-          {/* <Route path="/byborough" component={Home} /> */}
+          )
+
+
+
+          } />
+          <Route path="/byborough" render={() => (
+            <div>
+              {borough ? this.filterAllPlaces() : null}
+              <EachBoroughPage />
+            </div>
+          )}/>
         </Switch>
 
       </div>
@@ -157,5 +258,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
