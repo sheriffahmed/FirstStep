@@ -1,9 +1,10 @@
 import React from 'react'
 import MapContainer from '../api/googleMapsAPI'
 
-const boroughPage = ({lati,long, input, }) =>(
+const SearchBoroughs = ({lati,long, input, }) =>(
     <div>
 
 
-        </div>
+    </div>
 )
+export default SearchBoroughs
