@@ -22,6 +22,7 @@ class App extends Component {
     }
   }
 
+
   fetchListings = () => {
     Promise.all([
       resourcesAPI.getJobCenterListing(),
@@ -71,6 +72,7 @@ class App extends Component {
         })
         // console.log(`ALL`, this.state.allAddress)
       })
+
   }
 
 
@@ -80,6 +82,46 @@ class App extends Component {
     })
     console.log("this.state.borough", e.target.value)
   }
+
+
+
+//   FilterPlaces = () =>  {
+//     let {allAddress} = this.state
+//     return(
+//     <div>
+//       {allAddress.map(place =>{
+//          if(place.borough === this.state.borough){
+        
+       
+//           return(
+//            <ul> 
+//              <h2>Facility: {place.facility_name}</h2>
+//              <li>Phone Number: {place.phone_number_s}</li>
+//              <li>City: {place.city} </li>
+//              <li>Address: {place.street_address} </li>
+//              <li> {place.comments ? `Comments: ${place.comments}` : null } </li>     
+
+//           </ul>
+             
+//           )
+         
+//       } else {
+//         return ( <div> </div>)
+//       }
+//       })
+//     }
+//     </div>
+//   )}
+  handleMap = ()=> {
+    return (
+      <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} locations={this.state.allAddress} />
+     )
+  }
+  componentDidMount() {
+//     this.handleFetch();
+  }
+ 
+  
 
   handleCheckBox = e => {
     const { checkedArr } = this.state
@@ -157,6 +199,7 @@ class App extends Component {
     return (
       <div className="App" >
         <nav>
+
           {/* <Link to='/' >Home</Link> */}
           {"   "}
           <Link to='/byborough' >Centers By Borough</Link>
@@ -252,6 +295,7 @@ class App extends Component {
             </div>
           )}/>
         </Switch>
+
 
       </div>
 
