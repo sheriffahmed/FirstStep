@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Switch, Link, Route } from 'react-router-dom';
 import axios from 'axios';
-import MapContainer, {BOROUGHS} from './api/googleMapsAPI'
+import MapContainer, { BOROUGHS } from './api/googleMapsAPI'
 import logo from './logo.svg';
 import './App.css';
 import resourcesAPI from './api/resourcesAPI';
+import Home from './components/Home';
+
 
 class App extends Component {
   constructor() {
@@ -86,7 +88,7 @@ class App extends Component {
     </div>
   )
 
-  filterPlaces = () => {
+  filterAllPlaces = () => {
     let { allAddress } = this.state
     console.log("place.borough", this.state.borough)
     console.log("allAddress", allAddress)
@@ -123,24 +125,28 @@ class App extends Component {
       <div className="App" >
         <nav>
           <Link to='/' >Home</Link>
-          <Link to='/' >Centers By Borough</Link>
-          <Link to='/' >Centers By City</Link>
+          {"   "}
+          <Link to='/byborough' >Centers By Borough</Link>
+          {"   "}
+          <Link to='/bycity' >Centers By City</Link>
         </nav>
         {/* </header> */}
         <p className="App-intro" >
           To get started, edit <code> src / App.js</code > and save to reload.
         </p >
-        <h1> Filter Select</h1>
+        <h1> Filter Select All Places</h1>
         <this.HandleFilter />
-        {borough ? this.filterPlaces(): null}
+        {borough ? this.filterAllPlaces() : null}
         < br />
 
 
-        <MapContainer zoom ={10} initialCenter={BOROUGHS.MANHATTAN} />
+        <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} />
 
-<Switch>
-  <Route />
-  </Switch>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          {/* <Route path="/byborough" component={} />
+          <Route path="/bycity" component={} /> */}
+        </Switch>
 
       </div>
 
