@@ -36,37 +36,40 @@ import ReactDOM from 'react-dom';
 componentDidMount(){
   // const 
 }
+handleMark= () =>{
+
+}
 render() {
   const style = {
     width: '50vw',
     height: '50vh',
     marginLeft: '25%'
   }
+
+ let locations = this.props.locations.map((pos)=>{
+
+        console.log(`POS`, pos)
+      
+      
+            return(
+            
+           
+          <Marker position={{lat: parseFloat(pos.latitude), lng: parseFloat(pos.longitude)}} visible={true} />
+          
+          
+            )
+          })
+          console.log(`LOCATIONS`, locations)
     if (!this.props.loaded) {
         return <div ref='map'>Loading...</div>
       }
-      const marker = new google.maps.Marker({ position : {lat: 40.34122, lng: -73.62123}, 
-          map : this.map, 
-        title: 'This is Marker',
-        icon: { 
-        url:'' // put your url hereee
-        }
-        });
+      let {google} = this.props
+      
       return (
         <div style={style} ref='map'>Map will go here
         <Map google={this.props.google}>
-          {this.props.locations.map((pos)=>{
-          {/* console.log(`MARKERS`, pos) */}
-          
-         let mark = {lat: Number(pos.latitude), lng: Number(pos.longitude)}
-         console.log(`MARK`, mark)
-            return(
-            <div>
-           <Marker />
-          <Marker position={am} />
-          </div>
-            )
-          })}
+
+{locations}
         </Map> 
           
           
