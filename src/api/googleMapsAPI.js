@@ -54,7 +54,7 @@ render() {
           map : this.map, 
         title: 'This is Marker',
         icon: { 
-        url:'' // put your url here 
+        url:'' // put your url hereee
         }
         });
          let mark = {lat: Number(pos.latitude), lng: Number(pos.longitude)}
