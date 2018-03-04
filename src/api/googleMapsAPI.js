@@ -61,14 +61,15 @@ render() {
  MapContainer.propTypes = {
   google: PropTypes.object,
   zoom: PropTypes.number,
-  initialCenter: PropTypes.object
+  initialCenter: PropTypes.object,
+  locations: PropTypes.object
 }
 MapContainer.defaultProps = {
   zoom: 13,
   // San Francisco, by default
   initialCenter: {
-    lat: 37.774929,
-    lng: -122.419416
+    lat: 40.758896,
+    lng: -73.985130
   }
 }
 
