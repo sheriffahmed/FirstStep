@@ -3,26 +3,27 @@ import { Switch, Link, Route, Redirect } from 'react-router-dom';
 import EachBoroughPage from './EachBoroughPage';
 // import styles from './styles/index.css'
 
+
 class Home extends Component {
 
-    constructor(props) {
-        super();
-        const { allAddress } = props
+    constructor({ allAddress, jobAPI, gedAPI }) {
+        super({ allAddress, jobAPI, gedAPI });
+        // const { allAddress, jobAPI, gedAPI } = this.props
         this.state = {
-            checkedArr: [{services:["JobListings", "GedListings", "Other"],
-                          boroughs:["Queens", "Manhattan", "Bronx", "Brooklyn", "StatenIsland"]}],
-            fireRedirect: false
+            choicesArr: ["JobListings", "GedListings", "Other", "Queens", "Manhattan", "Bronx", "Brooklyn", "StatenIsland"],
+            fireRedirect: false,
+            checkedArr: []
         }
-        console.log("allAddresssss", props)
+        console.log("allAddresssss", this.props)
     }
 
     handleCheckboxChange = e => {
-        const { checkedArr } = this.state
-        let selectedArr = []
-        checkedArr[0].services.map((served) => {
+        const { choicesArr, checkedArr } = this.state
+        choicesArr.map((served) => {
             if (served === e.target.name) {
+                checkedArr.push(e.target.name)
                 this.setState({
-                    checkedArr: selectedArr.push(e.target.name)
+                    checkedArr
                 })
             }
         }) 
@@ -42,8 +43,8 @@ class Home extends Component {
     }
     
     renderDataSelected = () => {
-        const { allAddress,  } = this.state
-        return ( <EachBoroughPage allAddress={allAddress}/> )
+        const { checkedArr  } = this.state
+        return ( <EachBoroughPage allAddress={checkedArr}/> )
     }
 
     render() {
@@ -78,26 +79,31 @@ class Home extends Component {
         <input 
         type="checkbox"  
         name="Queens" 
+        onChange={this.handleCheckboxChange} 
         id="box2-1"/>
         <label htmlFor="box2-1"> Queens</label>
         <input 
         type="checkbox" 
         name="Manhattan"
+        onChange={this.handleCheckboxChange} 
         id="box2-2"/>
         <label htmlFor="box2-2"> Bronx </label>
         <input 
         type="checkbox"  
         name="Bronx" 
+        onChange={this.handleCheckboxChange} 
         id="box2-3"/>
         <label htmlFor="box2-3">Manhattan </label>
         <input 
         type="checkbox" 
         name="Brooklyn" 
+        onChange={this.handleCheckboxChange} 
         id="box2-4"/>
         <label htmlFor="box2-4">Brooklyn </label>
         <input 
         type="checkbox"  
         name="StatenIsland"
+        onChange={this.handleCheckboxChange} 
         id="box2-5"/>
         <label htmlFor="box2-5">Staten Island </label>
         </form>
