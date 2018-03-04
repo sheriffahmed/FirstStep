@@ -38,7 +38,7 @@ class Home extends Component {
         const { fireRedirect } = this.state
         return (
             <div>
-                <form onSubmit={this.submitForm}>
+                <form onSubmit={this.handleSubmit}>
                     <h2>Help Me Find</h2>
 
                     <p>
