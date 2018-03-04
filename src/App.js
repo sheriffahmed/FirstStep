@@ -27,7 +27,7 @@ class App extends Component {
        }
        let obj = {}
        for(const prop in place){
-         if(prop === 'borough' || prop === 'city' || prop === 'facility_name' || prop === 'latitude' || prop === 'longitude' || prop === 'comments' || prop === 'phone_number_s' || prop == 'street_address'){
+         if(prop === 'borough' || prop === 'city' || prop === 'facility_name' || prop === 'latitude' || prop === 'longitude' || prop === 'comments' || prop === 'phone_number_s' || prop === 'street_address'){
           obj[prop] = place[prop]
          }
        }
@@ -38,7 +38,6 @@ class App extends Component {
         allAddress: [...addresses],
         selectBox: ['', ...sb]
       })
-      console.log(`ALL`, this.state.allAddress)
     })
   }
   handleSelect = e =>{
@@ -77,25 +76,29 @@ class App extends Component {
              <li>Address: {place.street_address} </li>
              <li> {place.comments ? `Comments: ${place.comments}` : null } </li>     
 
-      </ul>
+          </ul>
              
           )
          
+      } else {
+        return ( <div> </div>)
       }
       })
     }
     </div>
   )}
-  handleMap =()=>(
-     <MapContainer zoom ={10} initialCenter={BOROUGHS.MANHATTAN} locations={this.state.allAddress} />
-  )
-  componentDidMount(){
-    this.handleFetch(); 
-    this.handleMap();
+  handleMap = ()=> {
+    return (
+      <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} locations={this.state.allAddress} />
+     )
+  }
+  componentDidMount() {
+    this.handleFetch();
   }
  
   render() {
     let {borough, allAddress} = this.state
+    console.log(this.state)
     return (
       <div className="App">
         {/* <header className="App-header"> */}
@@ -113,14 +116,14 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <h1> Filter Select</h1>
-        <this.HandleFilter />
-        {borough ? <this.FilterPlaces  /> : null}
+        {this.HandleFilter()}
+        {borough ? this.FilterPlaces() : null}
         <br />
-<this.handleMap />
+        {this.handleMap()}
        
 
-<Switch>
-  <Route />
+  <Switch>
+    <Route />
   </Switch>
 
       </div>

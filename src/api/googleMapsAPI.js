@@ -34,8 +34,9 @@ import ReactDOM from 'react-dom';
   }
   
 componentDidMount(){
-  // const 
+  this.loadMap();
 }
+
 handleMark= () =>{
 
 }
@@ -46,30 +47,31 @@ render() {
     marginLeft: '25%'
   }
 
+  console.log(this.props.locations)
+
  let locations = this.props.locations.map((pos)=>{
 
-        console.log(`POS`, pos)
-      
+        let latFloat = parseFloat(pos.latitude)
+        let lngFloat = parseFloat(pos.longitude)
+        
       
             return(
             
            
-          <Marker position={{lat: parseFloat(pos.latitude), lng: parseFloat(pos.longitude)}} visible={true} />
+          <Marker position={{lat: latFloat, lng: lngFloat}} visible={true} />
           
           
             )
           })
-          console.log(`LOCATIONS`, locations)
     if (!this.props.loaded) {
         return <div ref='map'>Loading...</div>
       }
       let {google} = this.props
       
       return (
-        <div style={style} ref='map'>Map will go here
+        <div style={style} ref='map'>
         <Map google={this.props.google}>
-
-{locations}
+          {locations}
         </Map> 
           
           
