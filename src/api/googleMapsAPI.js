@@ -33,19 +33,48 @@ import ReactDOM from 'react-dom';
     // ...
   }
   
+componentDidMount(){
+  this.loadMap();
+}
 
+handleMark= () =>{
+
+}
 render() {
   const style = {
     width: '50vw',
     height: '50vh',
     marginLeft: '25%'
   }
+
+  console.log(this.props.locations)
+
+ let locations = this.props.locations.map((pos)=>{
+
+        let latFloat = parseFloat(pos.latitude)
+        let lngFloat = parseFloat(pos.longitude)
+        
+      
+            return(
+            
+           
+          <Marker position={{lat: latFloat, lng: lngFloat}} visible={true} />
+          
+          
+            )
+          })
     if (!this.props.loaded) {
         return <div ref='map'>Loading...</div>
       }
+      let {google} = this.props
+      
       return (
-        <div style={style} ref='map'>Map will go here
-        <Map google={this.props.google} />
+        <div style={style} ref='map'>
+        <Map google={this.props.google}>
+          {locations}
+        </Map> 
+          
+          
         </div>
       )
     }
@@ -53,14 +82,15 @@ render() {
  MapContainer.propTypes = {
   google: PropTypes.object,
   zoom: PropTypes.number,
-  initialCenter: PropTypes.object
+  initialCenter: PropTypes.object,
+  locations: PropTypes.array
 }
 MapContainer.defaultProps = {
   zoom: 13,
   // San Francisco, by default
   initialCenter: {
-    lat: 37.774929,
-    lng: -122.419416
+    lat: 40.758896,
+    lng: -73.985130
   }
 }
 
