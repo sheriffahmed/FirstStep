@@ -23,7 +23,7 @@ class EachBoroughPage extends Component {
     render() {
         return (
             <div>
-                Helloooo
+            Helloooo
             <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} />
             </div>
         )
