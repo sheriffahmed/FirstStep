@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { Switch, Link, Route } from 'react-router-dom';
 import axios from 'axios';
 import logo from './logo.svg';
-import './App.css';
 import resourcesAPI from './api/resourcesAPI';
 import Home from './components/Home';
 import EachBoroughPage from './components/EachBoroughPage';
-
 
 class App extends Component {
   constructor() {
@@ -137,9 +135,7 @@ class App extends Component {
           {"   "}
         </nav>
         {/* </header> */}
-        <p className="App-intro" >
-          To get started, edit <code> src / App.js</code > and save to reload.
-        </p >
+        
         <h1> Filter Select All Places</h1>
         <this.HandleFilter />
         {borough ? this.filterAllPlaces() : null}
