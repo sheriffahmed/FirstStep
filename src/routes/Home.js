@@ -1,13 +1,17 @@
 import React from 'react'
 
 
-class home extends React.Component{
-    constructor(){
-        super();
-    }
-    render(){
+
+const Home =({checkHandler, stateCheck}) =>{
+   
+
         return(<div>
+            <h1>First Step</h1>
+
+<p>CheckBox:</p>
+<input type="checkbox" onChange={checkHandler} checked={stateCheck} />
+
             <MapContainer  />
             </div>)
-    }
+    
 }

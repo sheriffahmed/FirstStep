@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Switch, Link, Route} from 'react-router-dom';
 import axios from 'axios';
-import MapContainer from './api/googleMapsAPI'
+import MapContainer, {BOROUGHS} from './api/googleMapsAPI'
 import logo from './logo.svg';
 import './App.css';
 
@@ -113,7 +113,7 @@ class App extends Component {
         {borough ? <this.FilterPlaces  /> : null}
         <br />
 
-        <MapContainer zoom ={13} initialCenter={{lat: 40.730610, lng: -73.935242 }} />
+        <MapContainer zoom ={10} initialCenter={BOROUGHS.MANHATTAN} />
 
 <Switch>
   <Route />

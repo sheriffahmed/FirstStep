@@ -63,6 +63,19 @@ MapContainer.defaultProps = {
     lng: -122.419416
   }
 }
+
+
 export default GoogleApiWrapper({
     apiKey: ('AIzaSyBUcG-ocnq92foLawQ6Hvf8Xtyxjp-XXhY')
   })(MapContainer)
+
+  export const BOROUGHS = {
+MANHATTAN: {lat:40.758896 ,lng:-73.985130},
+BROOKLYN: {lat:40.650002 ,lng:-73.949997},
+BRONX: {lat:40.837048,lng:-73.865433},
+BRONX: {lat:40.837048,lng:-73.865433},
+
+
+
+
+  } 
