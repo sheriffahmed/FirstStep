@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Switch, Link, Route } from 'react-router-dom';
 import axios from 'axios';
-import MapContainer, { BOROUGHS } from './api/googleMapsAPI'
 import logo from './logo.svg';
 import './App.css';
 import resourcesAPI from './api/resourcesAPI';
 import Home from './components/Home';
+import EachBoroughPage from './components/EachBoroughPage';
 
 
 class App extends Component {
@@ -113,22 +113,28 @@ class App extends Component {
     )
   }
 
+  renderBoroughPage = () => {
+    const { allAddress } = this.state
+    return (
+      <Home allAddress = {allAddress} />
+    )
+  }
+
 
   componentDidMount() {
     this.fetchListings();
   }
 
   render() {
-    console.log("render: ", this.state)
+    // console.log("render: ", this.state)
     let { borough, allAddress } = this.state
     return (
       <div className="App" >
         <nav>
           <Link to='/' >Home</Link>
           {"   "}
-          <Link to='/byborough' >Centers By Borough</Link>
+          {/* <Link to='/byborough' >Centers By Borough</Link> */}
           {"   "}
-          <Link to='/bycity' >Centers By City</Link>
         </nav>
         {/* </header> */}
         <p className="App-intro" >
@@ -140,12 +146,14 @@ class App extends Component {
         < br />
 
 
-        <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} />
 
         <Switch>
-          <Route exact path="/" component={Home} />
-          {/* <Route path="/byborough" component={} />
-          <Route path="/bycity" component={} /> */}
+          <Route exact path="/" render={() =>(
+            <div>
+            <this.renderBoroughPage />
+            </div>
+          ) }/>
+          {/* <Route path="/byborough" component={Home} /> */}
         </Switch>
 
       </div>
