@@ -86,7 +86,7 @@ handleFilter = e =>{
 }
 handleSubmit = e => {
   const {allAddress, checkedArr, gedAPI,jobAPI} = this.state
-  e.preventDefault();
+  // e.preventDefault();
 console.log(`BOTH API`,allAddress)
 
 
@@ -381,7 +381,7 @@ this.setState({
                    {/* </form>  */}
                    </div>
                     <div>
-                      <button onClick={this.handleSubmit} >SUBMIT</button>
+                    <button onClick={this.handleSubmit} > <Link to='/byborough'> SUBMIT </Link></button>
                       
                       {/* <p>{JSON.stringify(this.state.listing)}</p> */}
                     </div>
