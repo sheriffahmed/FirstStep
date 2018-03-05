@@ -3,7 +3,8 @@ import { Switch, Link, Route } from 'react-router-dom';
 import axios from 'axios';
 import MapContainer, { BOROUGHS } from '../api/googleMapsAPI';
 
-class EachBoroughPage extends Component {
+const EachBoroughPage = ({ lat, long, input, }) => {
+
 
     constructor(props) {
         super(props);
@@ -22,8 +23,7 @@ this.list = [...this.props.listing]
         console.log("props ", props)
     }
 
-    // renderList = () => {
-    
+
 
     // }
 componentDidMount(){
@@ -31,6 +31,7 @@ componentDidMount(){
         listing: [...this.props.listing]
     })
 }
+
 
     render() {
         
@@ -45,6 +46,7 @@ componentDidMount(){
             <div>
             List of Resources Will Go Here
             <br />
+
             <ul> { this.state.listing.map( (place) =>(
               <div>
 
@@ -56,10 +58,13 @@ componentDidMount(){
                
             ) }
             </ul>
-            <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} locations={testLocations} />
-            </div>
-        )
-    }
 
+            <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} locations={testLocations} />
+        </div>
+
+    )
 }
+
+
+
 export default EachBoroughPage;
