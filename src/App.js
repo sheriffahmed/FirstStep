@@ -11,8 +11,8 @@ const Data = ({ allAddress, jobAPI, gedAPI }) => {
 
 }
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       allAddress: [],
       checkBox: [''],
@@ -75,6 +75,73 @@ class App extends Component {
       })
 
   }
+
+
+handleFilter = e =>{
+ 
+}
+handleSubmit = e => {
+  const {allAddress, checkedArr, gedAPI,jobAPI} = this.state
+  e.preventDefault();
+console.log(`BOTH API`,allAddress)
+
+
+
+     let choicesArr = ["Queens",
+      "Manhattan",
+      "Bronx",
+      "Brooklyn",
+       "Staten Island"]
+       //verdict is to check and see if any boroughs are  checked
+let verdict = false
+
+ let locations = (api) =>{
+  var filterData = api.filter(b =>  checkedArr[b.borough] )
+  console.log(`FILTER`, filterData)
+   choicesArr.map(d =>{
+         if(checkedArr[d]){
+           verdict =true
+         }
+       })
+      //  if(!verdict &&)
+       if(!verdict){
+         this.setState({
+           listing: [...api]
+         })
+       } else{
+        this.setState({
+          listing: [...filterData]
+        })
+
+       }}
+    
+         if(checkedArr["GedListings"]){
+  locations(gedAPI)
+
+} else if(checkedArr["JobListings"]){
+  locations(jobAPI)
+} else if (true){
+         locations(allAddress)
+       }
+
+
+
+
+// this.state.allAddress.filter(place =>(
+  
+// ))
+//   if(this.state.checkedArr === []){
+//    this.setState({
+//      listing
+//    })
+ 
+  
+// }
+this.setState({
+  fireRedirect: true //only updating the state when the form is submitted
+})
+
+}
 
 
   handleSelect = e => {
@@ -225,6 +292,7 @@ class App extends Component {
         {/* {this.HandleFilter()} */}
         < br />
            {/* {this.handleMap()} */}
+           
       <Switch>
           <Route exact path="/" render={() => (
 
@@ -292,7 +360,11 @@ class App extends Component {
                       </form>
                     </div>
                     <div>
-                      <button>SUBMIT</button>
+
+                      <button onClick={this.handleSubmit} >SUBMIT</button>
+                      
+                      {/* <p>{JSON.stringify(this.state.listing)}</p> */}
+
                     </div>
                   </div>
                 </div>
@@ -306,7 +378,9 @@ class App extends Component {
           <Route path="/byborough" render={() => (
             <div>
               {borough ? this.filterAllPlaces() : null}
-              <SearchBoroughs />
+
+              <EachBoroughPage listing={this.state.listing} />
+
             </div>
           )}/>
         </Switch>
