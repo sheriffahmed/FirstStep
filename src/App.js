@@ -6,7 +6,6 @@ import logo from './logo.svg';
 import resourcesAPI from './api/resourcesAPI';
 import Home from './components/Home';
 import EachBoroughPage from './components/EachBoroughPage';
-
 const Data = ({ allAddress, jobAPI, gedAPI }) => {
 
 }
@@ -20,7 +19,13 @@ class App extends Component {
       jobAPI: [],
       gedAPI: [],
       checked: false,
-      checkedArr: []
+      //CheckedArr creates key value pairs for checkbox state
+      checkedArr: {},
+      //listing will hold filtered data from target api array to be rendered
+      listing: [],
+      //ged & job checked isolates checked data for single api 
+      gedChecked: [],
+      jobChecked: []
     }
   }
 
@@ -75,7 +80,6 @@ class App extends Component {
       })
 
   }
-
 
 handleFilter = e =>{
  
@@ -144,10 +148,14 @@ this.setState({
 
 }
 
-
+  
   handleSelect = e => {
+    if(e.state.value === ''){
+
+    }
     this.setState({
       borough: e.target.value
+
     })
     console.log("this.state.borough", e.target.value)
   }
@@ -205,24 +213,36 @@ this.setState({
   // render() {
  
 
-  handleCheckBox = e => {
-    const { checkedArr } = this.state
-    let choicesArr = ["Queens",
-      "Manhattan",
-      "Bronx",
-      "Brooklyn",
-      "StatenIsland"]
+  handleCheckboxChange = (e, isLocation ) => {
+    this.state.checkedArr[e.target.name] = e.target.checked
+    console.log(`CHECK ARRAy`, this.state.checkedArr)
+      // const { checkedArr } = this.state
+      // let choicesArr = ["Queens",
+      // "Manhattan",
+      // "Bronx",
+      // "Brooklyn",
+      // "StatenIsland"]
 
-    choicesArr.map((served) => {
-      if (served === e.target.name) {
-        checkedArr.push(e.target.name)
-        this.setState({
-          checkedArr
-        })
-      }
-    })
-    console.log("e.target.name", e.target.name)
-    console.log("checkedArr", checkedArr)
+
+//       if (!isLocation){
+// if(!checkedArr.includes("GedListings") && !checkedArr.includes("JobListings")){
+
+// }
+
+    // }
+  
+    
+
+    // choicesArr.map((served) => {
+    //   if (served === e.target.name) {
+    //     checkedArr.push(e.target.name)
+    //     this.setState({
+          
+    //     })
+    //   }
+    // })
+    // console.log("e.target.name", e.target.name)
+    // console.log("checkedArr", checkedArr)
   }
 
   // HandleFilter = () => (
@@ -307,13 +327,13 @@ this.setState({
                       <input
                         type="checkbox"
                         name="GedListings"
-                        onChange={this.handleCheckboxChange}
+                        onChange={(e)=>{this.handleCheckboxChange(e, false)}}
                         id="box-1" />
                       <label htmlFor="box-1"> GED Locations</label>
                       <input
                         type="checkbox"
                         name="JobListings"
-                        onChange={this.handleCheckboxChange}
+                        onChange={(e)=>{this.handleCheckboxChange(e, false)}}
                         id="box-2" />
                       <label htmlFor="box-2"> Financial Assistance Locations </label>
                       <input
@@ -327,46 +347,44 @@ this.setState({
                       <h2>In Location</h2>
                     </div>
                     <div className="boxes1">
-                      <form onSubmit={this.handleSubmit}>
+                      {/* <form onSubmit={this.handleSubmit}> */}
                         <input
                           type="checkbox"
                           name="Queens"
-                          onChange={this.handleCheckboxChange}
+                          onChange={(e)=>{this.handleCheckboxChange(e, true)}}
                           id="box2-1" />
                         <label htmlFor="box2-1"> Queens</label>
                         <input
                           type="checkbox"
-                          name="Manhattan"
-                          onChange={this.handleCheckboxChange}
+                          name="Bronx"
+                          onChange={(e)=>{this.handleCheckboxChange(e, true)}}
                           id="box2-2" />
                         <label htmlFor="box2-2"> Bronx </label>
                         <input
                           type="checkbox"
-                          name="Bronx"
-                          onChange={this.handleCheckboxChange}
+                          name="Manhattan"
+                          onChange={(e)=>{this.handleCheckboxChange(e, true)}}
                           id="box2-3" />
                         <label htmlFor="box2-3">Manhattan </label>
                         <input
                           type="checkbox"
                           name="Brooklyn"
-                          onChange={this.handleCheckboxChange}
+                          onChange={(e)=>{this.handleCheckboxChange(e, true)}}
                           id="box2-4" />
                         <label htmlFor="box2-4">Brooklyn </label>
                         <input
                           type="checkbox"
-                          name="StatenIsland"
-                          onChange={this.handleCheckboxChange}
+                          name="Staten Island"
+                          onChange={(e)=>{this.handleCheckboxChange(e, true)}}
                           id="box2-5" />
                         <label htmlFor="box2-5">Staten Island </label>
-                      </form>
-                    </div>
+                      
+                   {/* </form>  */}
+                   </div>
                     <div>
-
                     <button onClick={this.handleSubmit} > <Link to='/byborough'> SUBMIT </Link></button>
-
                       
                       {/* <p>{JSON.stringify(this.state.listing)}</p> */}
-
                     </div>
                   </div>
                 </div>
@@ -380,9 +398,7 @@ this.setState({
           <Route path="/byborough" render={() => (
             <div>
               {borough ? this.filterAllPlaces() : null}
-
               <EachBoroughPage listing={this.state.listing} />
-
             </div>
           )}/>
         </Switch>
