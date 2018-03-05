@@ -31,6 +31,7 @@ export class MapContainer extends Component {
   //     })
   //     this.map = new maps.Map(node, mapConfig);
   //   }
+  //  hi
   //   // ...
   // }
 
