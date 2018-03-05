@@ -71,6 +71,7 @@ class Home extends Component {
         <label htmlFor="box-2"> Financial Assistance Locations </label>
       </div>
       <div className ="h2">
+        {""}
         <h2>In</h2>
       </div>
       <div className ="boxes1">
@@ -101,11 +102,10 @@ class Home extends Component {
         id="box2-5"/>
         <label htmlFor="box2-5">Staten Island </label>
         </form>
-      </div>     
+      </div>    
       <div>
-        <nav>
-            </nav>
-      <button>SUBMIT</button>
+        
+      <button><Link to='/byborough'></Link>SUBMIT</button>
     </div>               
                 
                 {fireRedirect && (
