@@ -10,7 +10,6 @@ import SearchBoroughs from './routes/SearchBoroughs';
 const Data = ({ allAddress, jobAPI, gedAPI }) => {
 
 }
-
 class App extends Component {
   constructor() {
     super();
@@ -21,13 +20,7 @@ class App extends Component {
       jobAPI: [],
       gedAPI: [],
       checked: false,
-      //CheckedArr creates key value pairs for checkbox state
-      checkedArr: {},
-      //listing will hold filtered data from target api array to be rendered
-      listing: [],
-      //ged & job checked isolates checked data for single api 
-      gedChecked: [],
-      jobChecked: []
+      checkedArr: []
     }
   }
 
@@ -83,72 +76,10 @@ class App extends Component {
 
   }
 
-handleFilter = e =>{
- 
-}
-handleSubmit = e => {
-  const {allAddress, checkedArr, gedAPI,jobAPI} = this.state
-  e.preventDefault();
-console.log(`BOTH API`,allAddress)
 
-
-
-     let choicesArr = ["Queens",
-      "Manhattan",
-      "Bronx",
-      "Brooklyn",
-       "Staten Island"]
-       //verdict is to check and see if any boroughs are  checked
-let verdict = false
-
- let locations = (api) =>{
-  var filterData = api.filter(b =>  checkedArr[b.borough] )
-  console.log(`FILTER`, filterData)
-   choicesArr.map(d =>{
-         if(checkedArr[d]){
-           verdict =true
-         }
-       })
-       if(!verdict){
-         this.setState({
-           listing: [...api]
-         })
-       } else{
-        this.setState({
-          listing: [...filterData]
-        })
-
-       }}
-
-       if(true){
-         locations(allAddress)
-       }
-
-
-
-
-// this.state.allAddress.filter(place =>(
-  
-// ))
-//   if(this.state.checkedArr === []){
-//    this.setState({
-//      listing
-//    })
- 
-  
-// }
-
-
-}
-
-  
   handleSelect = e => {
-    if(e.state.value === ''){
-
-    }
     this.setState({
       borough: e.target.value
-
     })
     console.log("this.state.borough", e.target.value)
   }
@@ -206,36 +137,24 @@ let verdict = false
   // render() {
  
 
-  handleCheckboxChange = (e, isLocation ) => {
-    this.state.checkedArr[e.target.name] = e.target.checked
-    console.log(`CHECK ARRAy`, this.state.checkedArr)
-      // const { checkedArr } = this.state
-      // let choicesArr = ["Queens",
-      // "Manhattan",
-      // "Bronx",
-      // "Brooklyn",
-      // "StatenIsland"]
+  handleCheckBox = e => {
+    const { checkedArr } = this.state
+    let choicesArr = ["Queens",
+      "Manhattan",
+      "Bronx",
+      "Brooklyn",
+      "StatenIsland"]
 
-
-//       if (!isLocation){
-// if(!checkedArr.includes("GedListings") && !checkedArr.includes("JobListings")){
-
-// }
-
-    // }
-  
-    
-
-    // choicesArr.map((served) => {
-    //   if (served === e.target.name) {
-    //     checkedArr.push(e.target.name)
-    //     this.setState({
-          
-    //     })
-    //   }
-    // })
-    // console.log("e.target.name", e.target.name)
-    // console.log("checkedArr", checkedArr)
+    choicesArr.map((served) => {
+      if (served === e.target.name) {
+        checkedArr.push(e.target.name)
+        this.setState({
+          checkedArr
+        })
+      }
+    })
+    console.log("e.target.name", e.target.name)
+    console.log("checkedArr", checkedArr)
   }
 
   // HandleFilter = () => (
@@ -319,13 +238,13 @@ let verdict = false
                       <input
                         type="checkbox"
                         name="GedListings"
-                        onChange={(e)=>{this.handleCheckboxChange(e, false)}}
+                        onChange={this.handleCheckboxChange}
                         id="box-1" />
                       <label htmlFor="box-1"> GED Locations</label>
                       <input
                         type="checkbox"
                         name="JobListings"
-                        onChange={(e)=>{this.handleCheckboxChange(e, false)}}
+                        onChange={this.handleCheckboxChange}
                         id="box-2" />
                       <label htmlFor="box-2"> Financial Assistance Locations </label>
                       <input
@@ -339,44 +258,41 @@ let verdict = false
                       <h2>In Location</h2>
                     </div>
                     <div className="boxes1">
-                      {/* <form onSubmit={this.handleSubmit}> */}
+                      <form onSubmit={this.handleSubmit}>
                         <input
                           type="checkbox"
                           name="Queens"
-                          onChange={(e)=>{this.handleCheckboxChange(e, true)}}
+                          onChange={this.handleCheckboxChange}
                           id="box2-1" />
                         <label htmlFor="box2-1"> Queens</label>
                         <input
                           type="checkbox"
-                          name="Bronx"
-                          onChange={(e)=>{this.handleCheckboxChange(e, true)}}
+                          name="Manhattan"
+                          onChange={this.handleCheckboxChange}
                           id="box2-2" />
                         <label htmlFor="box2-2"> Bronx </label>
                         <input
                           type="checkbox"
-                          name="Manhattan"
-                          onChange={(e)=>{this.handleCheckboxChange(e, true)}}
+                          name="Bronx"
+                          onChange={this.handleCheckboxChange}
                           id="box2-3" />
                         <label htmlFor="box2-3">Manhattan </label>
                         <input
                           type="checkbox"
                           name="Brooklyn"
-                          onChange={(e)=>{this.handleCheckboxChange(e, true)}}
+                          onChange={this.handleCheckboxChange}
                           id="box2-4" />
                         <label htmlFor="box2-4">Brooklyn </label>
                         <input
                           type="checkbox"
-                          name="Staten Island"
-                          onChange={(e)=>{this.handleCheckboxChange(e, true)}}
+                          name="StatenIsland"
+                          onChange={this.handleCheckboxChange}
                           id="box2-5" />
                         <label htmlFor="box2-5">Staten Island </label>
-                      
-                   {/* </form>  */}
-                   </div>
+                      </form>
+                    </div>
                     <div>
-                      <button onClick={this.handleSubmit} >SUBMIT</button>
-                      
-                      <p>{JSON.stringify(this.state.listing)}</p>
+                      <button>SUBMIT</button>
                     </div>
                   </div>
                 </div>
