@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import ReactDOM from 'react-dom';
+import WithMarkers from './WithMarkers';
 
 export class MapContainer extends Component {
   constructor(props) {
@@ -59,12 +60,9 @@ export class MapContainer extends Component {
 
 
       return (
-
-
         <Marker name={pos.name} position={{ lat: latFloat, lng: lngFloat }} visible={true} />
-
-
       )
+
     })
     if (!this.props.loaded) {
       return <div ref='map'>Loading...</div>
@@ -75,9 +73,7 @@ export class MapContainer extends Component {
       <div style={style} ref='map'>
         <Map google={this.props.google} initialCenter={this.props.initialCenter} >
           {locations}
-
         </Map>
-
       </div>
     )
   }
