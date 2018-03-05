@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Link, Route, Redirect } from 'react-router-dom';
 import EachBoroughPage from './EachBoroughPage';
-// import styles from './styles/index.css'
 
 
 class Home extends Component {

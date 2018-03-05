@@ -6,6 +6,7 @@ import logo from './logo.svg';
 import resourcesAPI from './api/resourcesAPI';
 import Home from './components/Home';
 import SearchBoroughs from './routes/SearchBoroughs';
+import styles from './styles/index.css'
 
 const Data = ({ allAddress, jobAPI, gedAPI }) => {
 
@@ -301,8 +302,6 @@ let verdict = false
           <Link to='/byborough' >Centers By Borough</Link>
           {"   "}
         </nav>
-
-        <h1> Filter Select All Places</h1>
         {/* {this.HandleFilter()} */}
         < br />
            {/* {this.handleMap()} */}
@@ -376,7 +375,9 @@ let verdict = false
                     <div>
                       <button onClick={this.handleSubmit} >SUBMIT</button>
                       
-                      <p>{JSON.stringify(this.state.listing)}</p>
+                      <div class = "list_div">
+                        <p>{JSON.stringify(this.state.listing)}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
