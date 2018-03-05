@@ -5,10 +5,12 @@ import axios from 'axios';
 import logo from './logo.svg';
 import resourcesAPI from './api/resourcesAPI';
 import Home from './components/Home';
-import EachBoroughPage from './components/EachBoroughPage';
+import SearchBoroughs from './routes/SearchBoroughs';
+
 const Data = ({ allAddress, jobAPI, gedAPI }) => {
 
 }
+
 class App extends Component {
   constructor() {
     super();
@@ -305,7 +307,7 @@ class App extends Component {
           <Route path="/byborough" render={() => (
             <div>
               {borough ? this.filterAllPlaces() : null}
-              <EachBoroughPage />
+              <SearchBoroughs />
             </div>
           )}/>
         </Switch>
