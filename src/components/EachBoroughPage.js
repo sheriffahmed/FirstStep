@@ -6,7 +6,7 @@ import MapContainer, { BOROUGHS } from '../api/googleMapsAPI';
 const EachBoroughPage = ({ lat, long, input, }) => {
 
 
-    constructor(props) {
+    constructor(props){
         super(props);
         const { allAddress, listing } = this.props
 this.list = [...this.props.listing]

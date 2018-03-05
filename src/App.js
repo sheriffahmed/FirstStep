@@ -5,7 +5,7 @@ import axios from 'axios';
 import logo from './logo.svg';
 import resourcesAPI from './api/resourcesAPI';
 import Home from './components/Home';
-import SearchBoroughs from './routes/SearchBoroughs';
+import EachBoroughPage from './components/EachBoroughPage';
 
 const Data = ({ allAddress, jobAPI, gedAPI }) => {
 
