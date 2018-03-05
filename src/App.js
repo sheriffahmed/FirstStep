@@ -83,6 +83,7 @@ handleFilter = e =>{
 handleSubmit = e => {
   const {allAddress, checkedArr, gedAPI,jobAPI} = this.state
   // e.preventDefault();
+  //  hi
 console.log(`BOTH API`,allAddress)
 
 

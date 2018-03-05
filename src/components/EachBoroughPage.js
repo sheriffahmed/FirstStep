@@ -25,6 +25,9 @@ this.locations = []
     }
 
 
+    // renderList = () => {
+    
+//  hi
 
     // }
 componentDidMount(){
