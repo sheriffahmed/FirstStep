@@ -10,8 +10,8 @@ const Data = ({ allAddress, jobAPI, gedAPI }) => {
 
 }
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       allAddress: [],
       checkBox: [''],
@@ -107,6 +107,7 @@ let verdict = false
            verdict =true
          }
        })
+      //  if(!verdict &&)
        if(!verdict){
          this.setState({
            listing: [...api]
@@ -117,8 +118,13 @@ let verdict = false
         })
 
        }}
+    
+         if(checkedArr["GedListings"]){
+  locations(gedAPI)
 
-       if(true){
+} else if(checkedArr["JobListings"]){
+  locations(jobAPI)
+} else if (true){
          locations(allAddress)
        }
 
@@ -135,7 +141,9 @@ let verdict = false
  
   
 // }
-
+this.setState({
+  fireRedirect: true //only updating the state when the form is submitted
+})
 
 }
 
@@ -304,6 +312,7 @@ let verdict = false
         {/* {this.HandleFilter()} */}
         < br />
            {/* {this.handleMap()} */}
+           
       <Switch>
           <Route exact path="/" render={() => (
 
@@ -374,7 +383,7 @@ let verdict = false
                     <div>
                       <button onClick={this.handleSubmit} >SUBMIT</button>
                       
-                      <p>{JSON.stringify(this.state.listing)}</p>
+                      {/* <p>{JSON.stringify(this.state.listing)}</p> */}
                     </div>
                   </div>
                 </div>
@@ -388,7 +397,7 @@ let verdict = false
           <Route path="/byborough" render={() => (
             <div>
               {borough ? this.filterAllPlaces() : null}
-              <EachBoroughPage />
+              <EachBoroughPage listing={this.state.listing} />
             </div>
           )}/>
         </Switch>

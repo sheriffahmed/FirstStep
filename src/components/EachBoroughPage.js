@@ -6,11 +6,12 @@ import MapContainer, { BOROUGHS } from '../api/googleMapsAPI';
 class EachBoroughPage extends Component {
 
     constructor(props) {
-        super();
-        const { allAddress } = props
+        super(props);
+        const { allAddress, listing } = this.props
         this.state = {
             info: "",
-            list: []
+            list: [],
+            listing: [...listing]
         }
         console.log("props ", props)
     }
@@ -26,7 +27,9 @@ class EachBoroughPage extends Component {
 
         return (
             <div>
-            Helloooo
+            List of Resources Will Go Here
+            <br />
+            <p>{JSON.stringify(this.props.listing)}</p>
             <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} locations={testLocations} />
             </div>
         )
