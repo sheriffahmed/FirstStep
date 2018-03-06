@@ -73,7 +73,7 @@ export class MapContainer extends Component {
 
     return (
       <div style={style} ref='map'>
-        <Map google={this.props.google} initialCenter={this.props.initialCenter} >
+        <Map google={this.props.google} initialCenter={this.props.initialCenter} zoom={this.props.zoom} >
           {locations}
 
         </Map>
@@ -100,7 +100,7 @@ MapContainer.propTypes = {
 }
 
 MapContainer.defaultProps = {
-  zoom: 13,
+  zoom: 5,
   // New York by default
   initialCenter: {
     lat: 40.758896,
