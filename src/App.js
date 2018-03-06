@@ -5,6 +5,7 @@ import axios from 'axios';
 import logo from './logo.svg';
 import resourcesAPI from './api/resourcesAPI';
 
+
 import EachBoroughPage from './components/EachBoroughPage';
 const Data = ({ allAddress, jobAPI, gedAPI }) => {
 
@@ -82,6 +83,7 @@ class App extends Component {
 
   }
 
+
   handleFilter = e => {
 
   }
@@ -94,6 +96,7 @@ class App extends Component {
     // this.setState({
     //   listing: []
     // });
+
 
 
     let choicesArr = ["Queens",
@@ -277,7 +280,6 @@ handleCheckboxChange = (e, isLocation) => {
   // }
 
 
-
   // choicesArr.map((served) => {
   //   if (served === e.target.name) {
   //     checkedArr.push(e.target.name)
@@ -367,6 +369,7 @@ render() {
               <h1>Take Your First Step </h1>
               <h2>Help Me Find</h2>
               <div>
+
                 <div id="wrapper">
                   <div className="boxes">
                     <input
@@ -382,10 +385,12 @@ render() {
                       id="box-2" />
                     <label htmlFor="box-2"> Financial Assistance Locations </label>
                     {/* <input
+
                         type="checkbox"
                         name="Other"
                         onChange={this.handleCheckboxChange}
                         id="box-3" />
+
                       <label htmlFor="box-3"> Other</label> */}
                   </div>
                   <div className="h2">
@@ -439,6 +444,7 @@ render() {
 
 
 
+
         } />
         <Route path="/byborough" render={() => (
           <div>
@@ -447,6 +453,7 @@ render() {
           </div>
         )} />
       </Switch>
+
 
 
     </div>

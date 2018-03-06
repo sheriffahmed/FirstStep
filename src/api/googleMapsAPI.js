@@ -1,7 +1,9 @@
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import ReactDOM from "react-dom";
+
 
 export class MapContainer extends Component {
   constructor(props) {
@@ -62,6 +64,7 @@ export class MapContainer extends Component {
         />
       );
     });
+
     if (!this.props.loaded) {
       return <div ref="map">Loading...</div>;
     }
@@ -76,7 +79,9 @@ export class MapContainer extends Component {
           zoom={this.props.zoom ? this.props.zoom : MapContainer.defaultProps.zoom}
         >
           {locations}
+
         </Map>
+
       </div>
     );
   }
@@ -123,3 +128,4 @@ export const BOROUGHS = {
     lng: -74.151535
   }
 };
+
