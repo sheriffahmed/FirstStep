@@ -4,7 +4,7 @@ import MapContainer, { BOROUGHS } from './api/googleMapsAPI'
 import axios from 'axios';
 import logo from './logo.svg';
 import resourcesAPI from './api/resourcesAPI';
-import Home from './components/Home';
+
 import EachBoroughPage from './components/EachBoroughPage';
 const Data = ({ allAddress, jobAPI, gedAPI }) => {
 
@@ -181,7 +181,7 @@ class App extends Component {
     locations(allAddress)
   }
 
-  console.log(`JOB FILTER TEST`, allAddress.filter(b =>{ console.log("b ELE ",b["address"]); return  b["address"]  && checkedArr[b.borough]}
+  console.log(`JOB FILTER TEST`, allAddress.filter(b =>  b["address"] && checkedArr[b.borough]
   )
 )
   
@@ -329,13 +329,13 @@ filterAllPlaces = () => {
   )
 }
 
-renderBoroughPage = () => {
-  const { allAddress, jobAPI, gedAPI } = this.state
+// renderBoroughPage = () => {
+//   const { allAddress, jobAPI, gedAPI } = this.state
 
-  return (
-    <Home allAddress={allAddress} jobAPI={jobAPI} gedAPI={gedAPI} />
-  )
-}
+//   return (
+//     <Home allAddress={allAddress} jobAPI={jobAPI} gedAPI={gedAPI} />
+//   )
+// }
 
 componentDidMount() {
   this.fetchListings();
