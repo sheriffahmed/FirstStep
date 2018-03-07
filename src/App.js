@@ -23,7 +23,7 @@ class App extends Component {
       checkedArr: {},
       //listing will hold filtered data from target api array to be rendered
       listing: [],
-      //ged & job checked isolates checked data for single api
+      //ged & job checked isolates checked data for single api 
       gedChecked: [],
       jobChecked: []
     };
