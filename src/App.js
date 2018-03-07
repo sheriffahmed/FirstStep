@@ -9,6 +9,7 @@ import EachBoroughPage from "./components/EachBoroughPage";
 import styles from "./styles/index.css";
 
 const Data = ({ allAddress, jobAPI, gedAPI }) => {};
+
 class App extends Component {
   constructor() {
     super();
@@ -23,10 +24,12 @@ class App extends Component {
       checkedArr: {},
       //listing will hold filtered data from target api array to be rendered
       listing: [],
+
       //ged & job checked isolates checked data for single api
       gedChecked: [],
       jobChecked: []
     };
+
   }
 
   fetchListings = () => {
@@ -65,6 +68,7 @@ class App extends Component {
               obj[prop] = place[prop];
             // }
           }
+
         }
       });
 
@@ -88,6 +92,7 @@ class App extends Component {
 
     let choicesArr = [
       "Queens",
+
       "Manhattan",
       "Bronx",
       "Brooklyn",
@@ -167,12 +172,14 @@ class App extends Component {
                 }
               }
 
+
       
     };
 
    
 
     // this.state.allAddress.filter(place =>(
+
 
     // ))
     //   if(this.state.checkedArr === []){
@@ -268,17 +275,22 @@ class App extends Component {
 
     // }
 
+
     // choicesArr.map((served) => {
     //   if (served === e.target.name) {
     //     checkedArr.push(e.target.name)
     //     this.setState({
+
+
 
     //     })
     //   }
     // })
     // console.log("e.target.name", e.target.name)
     // console.log("checkedArr", checkedArr)
+
   };
+
 
   // HandleFilter = () => (
   //   this.state.checkBox.map(b => {
@@ -401,6 +413,7 @@ class App extends Component {
                           }}
                           id="box2-1"
                         />
+
                         <label htmlFor="box2-1"> Queens</label>
                         <input
                           type="checkbox"
@@ -410,6 +423,7 @@ class App extends Component {
                           }}
                           id="box2-2"
                         />
+
                         <label htmlFor="box2-2"> Bronx </label>
                         <input
                           type="checkbox"

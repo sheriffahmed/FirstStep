@@ -86,6 +86,7 @@ this.handleUpdate();
         />
       );
     });
+
     if (!this.props.loaded) {
       return <div ref="map">Loading...</div>;
     }
@@ -100,7 +101,9 @@ this.handleUpdate();
           zoom={this.props.zoom ? this.props.zoom : MapContainer.defaultProps.zoom}
         >
           {locations}
+
         </Map>
+
       </div>
     );
   }
@@ -138,3 +141,4 @@ export const BOROUGHS = {
     lng: -74.151535
   }
 };
+
