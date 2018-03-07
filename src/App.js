@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Link, Route } from "react-router-dom";
-import MapContainer, { BOROUGHS } from "./api/googleMapsAPI";
+// import MapContainer, { BOROUGHS } from "./api/googleMapsAPI";
 import axios from "axios";
 import logo from "./logo.svg";
 import resourcesAPI from "./api/resourcesAPI";
@@ -10,8 +10,8 @@ import styles from "./styles/index.css";
 
 const Data = ({ allAddress, jobAPI, gedAPI }) => {};
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       allAddress: [],
       checkBox: [""],
@@ -34,13 +34,12 @@ class App extends Component {
       resourcesAPI.getJobCenterListing(),
       resourcesAPI.getGEDListing()
     ]).then(([jobRes, gedRes]) => {
-      console.log("jobRes.data", jobRes.data);
-      console.log("gedRes.data", gedRes.data);
+
       let addresses = [];
       let sb = [];
       let bothAPI = [...jobRes.data].concat([...gedRes.data]);
 
-      console.log("bothAPI", bothAPI);
+      // console.log("bothAPI", bothAPI);
       let matchingPropNames = [
         "borough",
         "city",
@@ -69,7 +68,7 @@ class App extends Component {
         }
       });
 
-      console.log(`ADD`, bothAPI);
+
       this.setState({
         allAddress: [...bothAPI],
         checkBox: ["", ...sb],
@@ -82,10 +81,10 @@ class App extends Component {
 
   handleFilter = e => {};
   handleSubmit = e => {
-    const { allAddress, checkedArr, gedAPI, jobAPI } = this.state;
+    const { allAddress, checkedArr, gedAPI, jobAPI, listing } = this.state;
     // e.preventDefault();
     //  hi
-    console.log(`BOTH API`, allAddress);
+    // console.log(`BOTH API`, allAddress);
 
     let choicesArr = [
       "Queens",
@@ -105,48 +104,65 @@ class App extends Component {
 
       var filterGed = api.filter(b => b["street_address"])
       var filterGed2 = api.filter(b => b["street_address"] && checkedArr[b.borough])
-      // console.log(`FILTER`, filterData);
+
       choicesArr.map(d => {
-        if (checkedArr["GedListings"]) {
-          ifGed = true
-        }
-        if (checkedArr["JobListings"]) { ifJob = true }
+        
         if (checkedArr[d]) {
           verdict = true;
         }
       });
+      if (checkedArr["GedListings"]) {
+          console.log(`confirming ged Locations is checked`,checkedArr["GedListings"])
+          ifGed = true
+        }
+        if (checkedArr["JobListings"]) { 
+          console.log(`confirming job Locations is checked`,checkedArr["JobListings"])
+          
+          ifJob = true 
+        }
       //  if(!verdict &&)
       if (!verdict) {
         
-                if (!ifJob && !ifGed) {
+                if (!ifJob && !ifGed || ifGed && ifJob) {
         
                   this.setState({
-                    listing: [...api]
+                    listing: [...api],
                   })
+                  console.log(`listing after submit: `, listing)
                 } else if (ifJob && !ifGed) {
                   this.setState({
-                    listing: [...filterJob]
+                    listing: [...filterJob],
+
+                    
                   })
                 } else if (ifGed && !ifJob) {
                   this.setState({
-                    listing: [...filterGed]
+                    listing: [...filterGed],
+
+                    
                   })
                 }
         
         
               } else {
-                if (!ifJob && !ifGed) {
+                if (!ifJob && !ifGed || ifGed && ifJob) {
                   this.setState({
-                    listing: [...filterData]
+                    listing: [...filterData],
+
+                    
                   })
         
                 } else if(ifJob && !ifGed){
                   this.setState({
-                    listing: [...filterJob2]
+                    listing: [...filterJob2],
+
+                    
                   })
                 }else if (ifGed && !ifJob) {
                   this.setState({
-                    listing: [...filterGed2]
+                    listing: [...filterGed2],
+
+                    
                   })
                 }
               }
@@ -167,17 +183,23 @@ class App extends Component {
     // }
     if(true) {
       locations(allAddress)
+      console.log(`Submission results: `,listing);
+      this.setState({
+        checkedArr: {}
+        
+      })
+      console.log(`checkedArr after submission: `, this.state.checkedArr)
     }
   };
 
-  handleSelect = e => {
-    if (e.state.value === "") {
-    }
-    this.setState({
-      borough: e.target.value
-    });
-    console.log("this.state.borough", e.target.value);
-  };
+  // handleSelect = e => {
+  //   if (e.state.value === "") {
+  //   }
+  //   this.setState({
+  //     borough: e.target.value
+  //   });
+  //   console.log("this.state.borough", e.target.value);
+  // };
 
   // HandleFilter = () =>(
   //   <div>
@@ -272,8 +294,8 @@ class App extends Component {
 
   filterAllPlaces = () => {
     let { allAddress } = this.state;
-    console.log("place.borough", this.state.borough);
-    console.log("allAddress", allAddress);
+    // console.log("place.borough", this.state.borough);
+
 
     return (
       <div>

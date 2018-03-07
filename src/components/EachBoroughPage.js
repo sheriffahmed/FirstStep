@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import MapContainer, { BOROUGHS } from "../api/googleMapsAPI";
 
@@ -21,25 +21,53 @@ class EachBoroughPage extends Component {
   }
 
   // renderList = () => {
+componentWillMount(){
 
-  //  hi
-  // }
-  componentDidMount() {
-    this.setState({
-      listing: [...this.props.listing]
-    });
-    console.log("this.props.listings", this.props.listing);
-    this.props.listing.map(place => {
-      if (place.address && place.latitude && place.longitude) {
-        this.locations.push({
-          name: place.address,
-          latitude: place.latitude,
-          longitude: place.longitude
-        });
-      }
-      console.log(`NewLOCATIONS`, this.locations);
+ if(this.locations){
+   this.locations = []
+ }
+ this.setState({
+  listing: [...this.props.listing]
+});
+console.log("this.props.listings", this.props.listing);
+
+this.props.listing.map(place => {
+  if (place.address && place.latitude && place.longitude) {
+    this.locations.push({
+      name: place.address,
+      latitude: place.latitude,
+      longitude: place.longitude
     });
   }
+  // console.log(`NewLOCATIONS`, this.locations);
+})
+}
+  //  hi
+  // }
+  componentDidUpdate(prevProps){
+    if(prevProps.listing !== this.props.listing){
+      this.setState({
+        listing: [...this.props.listing]
+      });
+    }
+  }
+  // componentDidMount() {
+  //   this.setState({
+  //     listing: [...this.props.listing]
+  //   });
+  //   console.log("this.props.listings", this.props.listing);
+   
+  //   this.props.listing.map(place => {
+  //     if (place.address && place.latitude && place.longitude) {
+  //       this.locations.push({
+  //         name: place.address,
+  //         latitude: place.latitude,
+  //         longitude: place.longitude
+  //       });
+  //     }
+  //     console.log(`NewLOCATIONS`, this.locations);
+  //   });
+  // }
 
   render() {
     const testLocations2 = [
