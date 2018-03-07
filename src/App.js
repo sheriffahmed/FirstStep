@@ -4,7 +4,6 @@ import { Switch, Link, Route } from "react-router-dom";
 import axios from "axios";
 import logo from "./logo.svg";
 import resourcesAPI from "./api/resourcesAPI";
-import Home from "./components/Home";
 import EachBoroughPage from "./components/EachBoroughPage";
 import styles from "./styles/index.css";
 
@@ -258,12 +257,6 @@ class App extends Component {
         })}
       </div>
     );
-  };
-
-  renderBoroughPage = () => {
-    const { allAddress, jobAPI, gedAPI } = this.state;
-
-    return <Home allAddress={allAddress} jobAPI={jobAPI} gedAPI={gedAPI} />;
   };
 
   componentDidMount() {
