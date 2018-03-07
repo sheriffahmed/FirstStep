@@ -1,0 +1,10 @@
+{
+  /* <Marker
+title={'The marker`s title will appear as a tooltip.'}
+name={'SOMA'}
+position={{ lat: 40.735681, lng: -73.988713 }} />
+<Marker
+name={'Dolores park'}
+position={{ lat: 40.808451, lng: -73.947112 }} />
+<Marker /> */
+}
