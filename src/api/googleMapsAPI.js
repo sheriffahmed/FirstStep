@@ -1,17 +1,23 @@
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
-import ReactDOM from "react-dom";
-
+// import ReactDOM from "react-dom";
 
 export class MapContainer extends Component {
   constructor(props) {
     super(props);
+    // this.locations
+    this.state = {
+      locations: []
+    }
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.google !== this.props.google) {
       // this.loadMap();
+  //     this.setState({
+  //   locations: [...this.props.locations]
+  // })
     }
   }
   // loadMap() {
@@ -36,9 +42,24 @@ export class MapContainer extends Component {
   //  hi
   //   // ...
   // }
-
+handleUpdate =()=>{
+  
+}
   componentDidMount() {
     // this.loadMap();
+// this.locations =  this.props.locations.map(pos => {
+//   let latFloat = parseFloat(pos.latitude);
+//   let lngFloat = parseFloat(pos.longitude);
+
+//   return (
+//     <Marker
+//       name={pos.name}
+//       position={{ lat: latFloat, lng: lngFloat }}
+//       visible={true}
+//     />
+//   );
+// });
+this.handleUpdate();
   }
 
   handleMark = () => {};
@@ -50,9 +71,10 @@ export class MapContainer extends Component {
       marginLeft: "2%"
     };
 
-    console.log(this.props.locations);
+    console.log(`location props GoogleMaps API`, this.props.locations);
+    let locations 
 
-    let locations = this.props.locations.map(pos => {
+    locations = this.props.locations.map(pos => {
       let latFloat = parseFloat(pos.latitude);
       let lngFloat = parseFloat(pos.longitude);
 
@@ -64,7 +86,6 @@ export class MapContainer extends Component {
         />
       );
     });
-
     if (!this.props.loaded) {
       return <div ref="map">Loading...</div>;
     }
@@ -79,24 +100,13 @@ export class MapContainer extends Component {
           zoom={this.props.zoom ? this.props.zoom : MapContainer.defaultProps.zoom}
         >
           {locations}
-
         </Map>
-
       </div>
     );
   }
 }
 
-{
-  /* <Marker
-title={'The marker`s title will appear as a tooltip.'}
-name={'SOMA'}
-position={{ lat: 40.735681, lng: -73.988713 }} />
-<Marker
-name={'Dolores park'}
-position={{ lat: 40.808451, lng: -73.947112 }} />
-<Marker /> */
-}
+
 
 MapContainer.propTypes = {
   google: PropTypes.object,
@@ -128,4 +138,3 @@ export const BOROUGHS = {
     lng: -74.151535
   }
 };
-
