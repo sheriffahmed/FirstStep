@@ -4,6 +4,9 @@ import { Switch, Link, Route } from "react-router-dom";
 import axios from "axios";
 import logo from "./logo.svg";
 import resourcesAPI from "./api/resourcesAPI";
+
+import Home from "./components/Home";
+
 import EachBoroughPage from "./components/EachBoroughPage";
 import styles from "./styles/index.css";
 
@@ -158,27 +161,28 @@ class App extends Component {
         
                 } else if(ifJob && !ifGed){
                   this.setState({
-                    listing: [...filterJob2],                    
+
+                    listing: [...filterJob2],
+
+                    
+
                   })
                 }else if (ifGed && !ifJob) {
                   this.setState({
                     listing: [...filterGed2],
-                  })
-                }
-              }
-    };
-
-   
 
     // this.state.allAddress.filter(place =>(
-
-
     // ))
     //   if(this.state.checkedArr === []){
     //    this.setState({
     //      listing
     //    })
 
+    // ))
+    //   if(this.state.checkedArr === []){
+    //    this.setState({
+    //      listing
+    //    })
     // }
     if(true) {
       locations(allAddress)
@@ -190,6 +194,30 @@ class App extends Component {
       console.log(`checkedArr after submission: `, this.state.checkedArr)
     }
   };
+
+
+  // handleSelect = e => {
+  //   if (e.state.value === "") {
+  //   }
+  //   this.setState({
+  //     borough: e.target.value
+  //   });
+  //   console.log("this.state.borough", e.target.value);
+  // };
+
+  // HandleFilter = () =>(
+  //   <div>
+  //     <select onChange={this.handleSelect}>
+  //       {this.state.selectBox.map(b =>{
+  //         return(
+  //           <option value={b}>
+  //             {b}
+  //             </option>
+  //         )
+  //       })}
+  //       </select>
+  //     </div>
+  // )
 
   FilterPlaces = () => {
     let { allAddress } = this.state;
@@ -219,6 +247,47 @@ class App extends Component {
     );
   };
 
+  // handleMap = ()=> {
+  //   return (
+  //     <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} locations={this.state.allAddress} />
+  //    )
+  // }
+
+  // render() {
+
+  handleCheckboxChange = (e, isLocation) => {
+    this.state.checkedArr[e.target.name] = e.target.checked;
+    console.log(`CHECK ARRAy`, this.state.checkedArr);
+    // const { checkedArr } = this.state
+    // let choicesArr = ["Queens",
+    // "Manhattan",
+    // "Bronx",
+    // "Brooklyn",
+    // "StatenIsland"]
+
+    //       if (!isLocation){
+    // if(!checkedArr.includes("GedListings") && !checkedArr.includes("JobListings")){
+
+    // }
+
+    // }
+
+
+    // choicesArr.map((served) => {
+    //   if (served === e.target.name) {
+    //     checkedArr.push(e.target.name)
+    //     this.setState({
+
+
+
+    //     })
+    //   }
+    // })
+    // console.log("e.target.name", e.target.name)
+    // console.log("checkedArr", checkedArr)
+
+  };
+
 
   handleCheckboxChange = (e, isLocation) => {
     this.state.checkedArr[e.target.name] = e.target.checked;
@@ -226,8 +295,6 @@ class App extends Component {
 
   };
 
-
- 
   filterAllPlaces = () => {
     let { allAddress } = this.state;
     // console.log("place.borough", this.state.borough);
@@ -259,6 +326,14 @@ class App extends Component {
     );
   };
 
+
+  renderBoroughPage = () => {
+    const { allAddress, jobAPI, gedAPI } = this.state;
+
+    return <Home allAddress={allAddress} jobAPI={jobAPI} gedAPI={gedAPI} />;
+  };
+
+
   componentDidMount() {
     this.fetchListings();
   }
@@ -269,7 +344,20 @@ class App extends Component {
     return (
       <div>
 
+
         <br />
+
+
+        {/* <nav>
+
+           <Link to='/' >Home</Link>
+          {"   "}
+          <Link to='/byborough' >Centers By Borough</Link>
+          {"   "}
+        </nav> */}
+        {/* {this.HandleFilter()} */}
+        <br />
+        {/* {this.handleMap()} */}
 
 
         <Switch>

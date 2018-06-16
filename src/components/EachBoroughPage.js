@@ -42,7 +42,8 @@ this.props.listing.map(place => {
   // console.log(`NewLOCATIONS`, this.locations);
 })
 }
-
+  //  hi
+  // }
   componentDidUpdate(prevProps){
     if(prevProps.listing !== this.props.listing){
       this.setState({
@@ -50,7 +51,23 @@ this.props.listing.map(place => {
       });
     }
   }
- 
+  // componentDidMount() {
+  //   this.setState({
+  //     listing: [...this.props.listing]
+  //   });
+  //   console.log("this.props.listings", this.props.listing);
+   
+  //   this.props.listing.map(place => {
+  //     if (place.address && place.latitude && place.longitude) {
+  //       this.locations.push({
+  //         name: place.address,
+  //         latitude: place.latitude,
+  //         longitude: place.longitude
+  //       });
+  //     }
+  //     console.log(`NewLOCATIONS`, this.locations);
+  //   });
+  // }
 
   render() {
     const testLocations2 = [
