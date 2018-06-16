@@ -4,7 +4,9 @@ import { Switch, Link, Route } from "react-router-dom";
 import axios from "axios";
 import logo from "./logo.svg";
 import resourcesAPI from "./api/resourcesAPI";
+
 import Home from "./components/Home";
+
 import EachBoroughPage from "./components/EachBoroughPage";
 import styles from "./styles/index.css";
 
@@ -159,34 +161,28 @@ class App extends Component {
         
                 } else if(ifJob && !ifGed){
                   this.setState({
+
                     listing: [...filterJob2],
 
                     
+
                   })
                 }else if (ifGed && !ifJob) {
                   this.setState({
                     listing: [...filterGed2],
 
-                    
-                  })
-                }
-              }
-
-
-      
-    };
-
-   
-
     // this.state.allAddress.filter(place =>(
-
-
     // ))
     //   if(this.state.checkedArr === []){
     //    this.setState({
     //      listing
     //    })
 
+    // ))
+    //   if(this.state.checkedArr === []){
+    //    this.setState({
+    //      listing
+    //    })
     // }
     if(true) {
       locations(allAddress)
@@ -198,6 +194,7 @@ class App extends Component {
       console.log(`checkedArr after submission: `, this.state.checkedArr)
     }
   };
+
 
   // handleSelect = e => {
   //   if (e.state.value === "") {
@@ -292,17 +289,11 @@ class App extends Component {
   };
 
 
-  // HandleFilter = () => (
-  //   this.state.checkBox.map(b => {
-  //     return (
-  //       <div>
-  //         <input type='checkbox' name={b} onClick={this.handleCheckBox} checked={this.state.checked} />
-  //         <label> {b} </label>
+  handleCheckboxChange = (e, isLocation) => {
+    this.state.checkedArr[e.target.name] = e.target.checked;
+    console.log(`CHECK ARRAy`, this.state.checkedArr);
 
-  //       </div >
-  //     )
-  //   })
-  // )
+  };
 
   filterAllPlaces = () => {
     let { allAddress } = this.state;
@@ -335,11 +326,13 @@ class App extends Component {
     );
   };
 
+
   renderBoroughPage = () => {
     const { allAddress, jobAPI, gedAPI } = this.state;
 
     return <Home allAddress={allAddress} jobAPI={jobAPI} gedAPI={gedAPI} />;
   };
+
 
   componentDidMount() {
     this.fetchListings();
@@ -350,6 +343,11 @@ class App extends Component {
     let { borough, allAddress } = this.state;
     return (
       <div>
+
+
+        <br />
+
+
         {/* <nav>
 
            <Link to='/' >Home</Link>
@@ -360,6 +358,7 @@ class App extends Component {
         {/* {this.HandleFilter()} */}
         <br />
         {/* {this.handleMap()} */}
+
 
         <Switch>
           <Route

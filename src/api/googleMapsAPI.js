@@ -14,6 +14,7 @@ export class MapContainer extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.google !== this.props.google) {
+
       // this.loadMap();
   //     this.setState({
   //   locations: [...this.props.locations]
@@ -42,10 +43,12 @@ export class MapContainer extends Component {
   //  hi
   //   // ...
   // }
+
 handleUpdate =()=>{
   
 }
   componentDidMount() {
+
     // this.loadMap();
 // this.locations =  this.props.locations.map(pos => {
 //   let latFloat = parseFloat(pos.latitude);
@@ -59,6 +62,7 @@ handleUpdate =()=>{
 //     />
 //   );
 // });
+
 this.handleUpdate();
   }
 
