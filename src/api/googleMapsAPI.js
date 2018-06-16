@@ -73,7 +73,7 @@ this.handleUpdate();
       width: "700px",
       height: "400px",
       marginLeft: "2%"
-    };
+    }; 
 
     console.log(`location props GoogleMaps API`, this.props.locations);
     let locations 

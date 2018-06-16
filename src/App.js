@@ -192,7 +192,7 @@ class App extends Component {
         
       })
       console.log(`checkedArr after submission: `, this.state.checkedArr)
-    }
+    // }
   };
 
 
