@@ -69,6 +69,10 @@ this.props.listing.map(place => {
   //   });
   // }
 
+  ResetState = () =>{
+    this.props.listing = ''
+  }
+
   render() {
     const testLocations2 = [
       {
@@ -88,7 +92,7 @@ this.props.listing.map(place => {
     return (
       <div>
         <div>
-          <Link to="/">
+          <Link to="/" onClick={this.ResetState}>
             <img
               style={{ width: "100px" }}
               src="https://i.imgur.com/muUuCZ8.png"
