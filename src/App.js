@@ -151,6 +151,7 @@ class App extends Component {
         
         
               } else {
+
                 if (!ifJob && !ifGed || ifGed && ifJob) {
                   this.setState({
                     listing: [...filterData],
@@ -195,6 +196,7 @@ class App extends Component {
     }
                   };
                 }
+              }
 
 
   // handleSelect = e => {
