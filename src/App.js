@@ -94,7 +94,6 @@ class App extends Component {
 
     let choicesArr = [
       "Queens",
-
       "Manhattan",
       "Bronx",
       "Brooklyn",
@@ -170,6 +169,7 @@ class App extends Component {
                 }else if (ifGed && !ifJob) {
                   this.setState({
                     listing: [...filterGed2],
+                  })
 
     // this.state.allAddress.filter(place =>(
     // ))
@@ -192,8 +192,9 @@ class App extends Component {
         
       })
       console.log(`checkedArr after submission: `, this.state.checkedArr)
-    // }
-  };
+    }
+                  };
+                }
 
 
   // handleSelect = e => {
