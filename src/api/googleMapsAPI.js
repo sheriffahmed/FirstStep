@@ -14,7 +14,6 @@ export class MapContainer extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.google !== this.props.google) {
-
         
     }
   }

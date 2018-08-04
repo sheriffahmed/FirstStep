@@ -159,7 +159,6 @@ class App extends Component {
     });
   };
 
-
   FilterPlaces = () => {
     let { allAddress } = this.state;
     return (
@@ -194,8 +193,6 @@ class App extends Component {
    
   };
 
-  
-
   filterAllPlaces = () => {
     let { allAddress } = this.state;
 
@@ -227,7 +224,6 @@ class App extends Component {
   };
 
 
-
   componentDidMount() {
     this.fetchListings();
   }
@@ -237,8 +233,8 @@ class App extends Component {
     let { borough, allAddress } = this.state;
     return (
       <div>
-       
         <br />
+
 
         <Switch>
           <Route
