@@ -4,7 +4,6 @@ import MapContainer, { BOROUGHS } from "./api/googleMapsAPI";
 import axios from "axios";
 import logo from "./logo.svg";
 import resourcesAPI from "./api/resourcesAPI";
-import Home from "./components/Home";
 import EachBoroughPage from "./components/EachBoroughPage";
 import styles from "./styles/index.css";
 
@@ -34,13 +33,11 @@ class App extends Component {
       resourcesAPI.getJobCenterListing(),
       resourcesAPI.getGEDListing()
     ]).then(([jobRes, gedRes]) => {
-      console.log("jobRes.data", jobRes.data);
-      console.log("gedRes.data", gedRes.data);
+
       let addresses = [];
       let sb = [];
       let bothAPI = [...jobRes.data].concat([...gedRes.data]);
 
-      console.log("bothAPI", bothAPI);
       let matchingPropNames = [
         "borough",
         "city",
@@ -62,30 +59,27 @@ class App extends Component {
         if (!sb.includes(place.borough)) {
           sb.push(place.borough);
           for (const prop in place) {
-            // if (matchingPropNames.indexOf(prop) >= 0) {
+
               obj[prop] = place[prop];
-            // }
+
           }
         }
       });
 
-      console.log(`ADD`, bothAPI);
+
       this.setState({
         allAddress: [...bothAPI],
         checkBox: ["", ...sb],
         jobAPI: [...jobRes],
         gedAPI: [...gedRes]
       });
-      // console.log(`ALL`, this.state.allAddress)
+  
     });
   };
 
   handleFilter = e => {};
   handleSubmit = e => {
     const { allAddress, checkedArr, gedAPI, jobAPI } = this.state;
-    // e.preventDefault();
-    //  hi
-    console.log(`BOTH API`, allAddress);
 
     let choicesArr = [
       "Queens",
@@ -105,7 +99,6 @@ class App extends Component {
 
       var filterGed = api.filter(b => b["street_address"])
       var filterGed2 = api.filter(b => b["street_address"] && checkedArr[b.borough])
-      // console.log(`FILTER`, filterData);
       choicesArr.map(d => {
         if (checkedArr["GedListings"]) {
           ifGed = true
@@ -115,7 +108,6 @@ class App extends Component {
           verdict = true;
         }
       });
-      //  if(!verdict &&)
       if (!verdict) {
         
                 if (!ifJob && !ifGed) {
@@ -154,17 +146,6 @@ class App extends Component {
       
     };
 
-   
-
-    // this.state.allAddress.filter(place =>(
-
-    // ))
-    //   if(this.state.checkedArr === []){
-    //    this.setState({
-    //      listing
-    //    })
-
-    // }
     if(true) {
       locations(allAddress)
     }
@@ -176,22 +157,8 @@ class App extends Component {
     this.setState({
       borough: e.target.value
     });
-    console.log("this.state.borough", e.target.value);
   };
 
-  // HandleFilter = () =>(
-  //   <div>
-  //     <select onChange={this.handleSelect}>
-  //       {this.state.selectBox.map(b =>{
-  //         return(
-  //           <option value={b}>
-  //             {b}
-  //             </option>
-  //         )
-  //       })}
-  //       </select>
-  //     </div>
-  // )
 
   FilterPlaces = () => {
     let { allAddress } = this.state;
@@ -221,59 +188,17 @@ class App extends Component {
     );
   };
 
-  // handleMap = ()=> {
-  //   return (
-  //     <MapContainer zoom={10} initialCenter={BOROUGHS.MANHATTAN} locations={this.state.allAddress} />
-  //    )
-  // }
-
-  // render() {
 
   handleCheckboxChange = (e, isLocation) => {
     this.state.checkedArr[e.target.name] = e.target.checked;
-    console.log(`CHECK ARRAy`, this.state.checkedArr);
-    // const { checkedArr } = this.state
-    // let choicesArr = ["Queens",
-    // "Manhattan",
-    // "Bronx",
-    // "Brooklyn",
-    // "StatenIsland"]
-
-    //       if (!isLocation){
-    // if(!checkedArr.includes("GedListings") && !checkedArr.includes("JobListings")){
-
-    // }
-
-    // }
-
-    // choicesArr.map((served) => {
-    //   if (served === e.target.name) {
-    //     checkedArr.push(e.target.name)
-    //     this.setState({
-
-    //     })
-    //   }
-    // })
-    // console.log("e.target.name", e.target.name)
-    // console.log("checkedArr", checkedArr)
+   
   };
 
-  // HandleFilter = () => (
-  //   this.state.checkBox.map(b => {
-  //     return (
-  //       <div>
-  //         <input type='checkbox' name={b} onClick={this.handleCheckBox} checked={this.state.checked} />
-  //         <label> {b} </label>
-
-  //       </div >
-  //     )
-  //   })
-  // )
+  
 
   filterAllPlaces = () => {
     let { allAddress } = this.state;
-    console.log("place.borough", this.state.borough);
-    console.log("allAddress", allAddress);
+
 
     return (
       <div>
@@ -301,31 +226,19 @@ class App extends Component {
     );
   };
 
-  renderBoroughPage = () => {
-    const { allAddress, jobAPI, gedAPI } = this.state;
 
-    return <Home allAddress={allAddress} jobAPI={jobAPI} gedAPI={gedAPI} />;
-  };
 
   componentDidMount() {
     this.fetchListings();
   }
 
   render() {
-    // console.log("render: ", this.state)
+
     let { borough, allAddress } = this.state;
     return (
       <div>
-        {/* <nav>
-
-           <Link to='/' >Home</Link>
-          {"   "}
-          <Link to='/byborough' >Centers By Borough</Link>
-          {"   "}
-        </nav> */}
-        {/* {this.HandleFilter()} */}
+       
         <br />
-        {/* {this.handleMap()} */}
 
         <Switch>
           <Route
@@ -334,7 +247,6 @@ class App extends Component {
             render={() => (
               <div>
                 <div>
-                  {/* <Link to='/'><img id="icon" src='https://i.imgur.com/muUuCZ8.png'/></Link> */}
                   <h1>
                     <span>Take Your First Step</span>{" "}
                   </h1>
@@ -370,7 +282,6 @@ class App extends Component {
                         <h2>In </h2>
                       </div>
                       <div className="boxes1">
-                        {/* <form onSubmit={this.handleSubmit}> */}
                         <input
                           type="checkbox"
                           name="Queens"
@@ -417,7 +328,6 @@ class App extends Component {
                         />
                         <label htmlFor="box2-5">Staten Island </label>
 
-                        {/* </form>  */}
                       </div>
                       <div>
                         <button onClick={this.handleSubmit}>
@@ -425,7 +335,6 @@ class App extends Component {
                           <Link to="/byborough"> SUBMIT </Link>
                         </button>
 
-                        {/* <p>{JSON.stringify(this.state.listing)}</p> */}
                       </div>
                     </div>
                   </div>

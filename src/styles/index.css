@@ -140,7 +140,6 @@ button:hover {
 }
 
 button::after {
-  /*background-color: #f00;*/
   height: 70%;
   left: -35%;
   top: 0;
