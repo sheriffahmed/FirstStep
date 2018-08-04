@@ -15,12 +15,9 @@ class EachBoroughPage extends Component {
       list: [],
       listing: []
     };
-
-    console.log("LISTING", this.state.listing);
-    console.log("props ", props);
   }
 
-  // renderList = () => {
+
 componentWillMount(){
 
  if(this.locations){
@@ -29,7 +26,6 @@ componentWillMount(){
  this.setState({
   listing: [...this.props.listing]
 });
-console.log("this.props.listings", this.props.listing);
 
 this.props.listing.map(place => {
   if (place.address && place.latitude && place.longitude) {
@@ -39,11 +35,11 @@ this.props.listing.map(place => {
       longitude: place.longitude
     });
   }
-  // console.log(`NewLOCATIONS`, this.locations);
+
 })
 }
-  //  hi
-  // }
+
+
   componentDidUpdate(prevProps){
     if(prevProps.listing !== this.props.listing){
       this.setState({
@@ -51,23 +47,11 @@ this.props.listing.map(place => {
       });
     }
   }
-  // componentDidMount() {
-  //   this.setState({
-  //     listing: [...this.props.listing]
-  //   });
-  //   console.log("this.props.listings", this.props.listing);
-   
-  //   this.props.listing.map(place => {
-  //     if (place.address && place.latitude && place.longitude) {
-  //       this.locations.push({
-  //         name: place.address,
-  //         latitude: place.latitude,
-  //         longitude: place.longitude
-  //       });
-  //     }
-  //     console.log(`NewLOCATIONS`, this.locations);
-  //   });
-  // }
+  
+
+  ResetState = () =>{
+    this.props.listing = ''
+  }
 
   render() {
     const testLocations2 = [
@@ -84,11 +68,10 @@ this.props.listing.map(place => {
     ];
     const testLocations = [];
 
-    // let list = [...this.props.listing]
     return (
       <div>
         <div>
-          <Link to="/">
+          <Link to="/" onClick={this.ResetState}>
             <img
               style={{ width: "100px" }}
               src="https://i.imgur.com/muUuCZ8.png"
